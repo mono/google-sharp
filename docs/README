@@ -1,5 +1,0 @@
-After 'make install' you need to add this line somewhere in
-${prefix}/lib/monodoc/monodoc.xml:
-
-	<node label="Google" name="Mono.Google"/>
-
