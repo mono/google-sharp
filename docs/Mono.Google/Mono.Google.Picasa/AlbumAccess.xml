@@ -1,0 +1,32 @@
+<Type Name="AlbumAccess" FullName="Mono.Google.Picasa.AlbumAccess">
+  <TypeSignature Language="C#" Value="public enum AlbumAccess" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Google</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Members>
+    <Member MemberName="Public">
+      <MemberSignature Language="C#" Value="Public" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Mono.Google.Picasa.AlbumAccess</ReturnType></ReturnValue>
+      <Docs>
+        <summary>The album is listed in your Picasaweb home.</summary></Docs>
+    </Member>
+    <Member MemberName="Private">
+      <MemberSignature Language="C#" Value="Private" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Mono.Google.Picasa.AlbumAccess</ReturnType></ReturnValue>
+      <Docs>
+        <summary>Only people that know the URL for this albums can browse it.</summary></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>Album access rights.</summary>
+    <remarks>The URL of public albums is always listed in your Picasaweb home page. For people to see your private albums, you have to share the URL with them.</remarks>
+  </Docs>
+</Type>

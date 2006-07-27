@@ -1,0 +1,8 @@
+prefix=@prefix@
+assemblies_dir=${prefix}/lib/Mono.Google
+Libraries=${assemblies_dir}/Mono.Google.dll
+ 
+Name: Mono.Google
+Description: Mono.Google.dll - 
+Version: 0.1
+Libs: -r:Mono.Google.dll

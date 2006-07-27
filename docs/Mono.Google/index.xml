@@ -1,0 +1,40 @@
+<Overview>
+  <Assemblies>
+    <Assembly Name="Mono.Google" Version="0.1.0.0">
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCompany(Company="Novell, Inc.")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCopyright(Copyright="(c) 2006 Novell, Inc.")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyDescription(Description="")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTitle(Title="Mono.Google")</AttributeName>
+        </Attribute>
+      </Attributes>
+    </Assembly>
+  </Assemblies>
+  <Remarks>To be added.</Remarks>
+  <Copyright>To be added.</Copyright>
+  <Types>
+    <Namespace Name="Mono.Google">
+      <Type Name="GoogleConnection" />
+      <Type Name="GoogleService" />
+      <Type Name="NoCheckCertificatePolicy" />
+    </Namespace>
+    <Namespace Name="Mono.Google.Picasa">
+      <Type Name="PicasaPicture" />
+      <Type Name="PicasaWeb" />
+      <Type Name="PicasaAlbum" />
+      <Type Name="CreateAlbumException" />
+      <Type Name="UploadPictureException" />
+      <Type Name="AlbumAccess" />
+      <Type Name="PicasaAlbumCollection" />
+      <Type Name="PicasaPictureCollection" />
+    </Namespace>
+  </Types>
+  <Title>Mono.Google</Title>
+</Overview>

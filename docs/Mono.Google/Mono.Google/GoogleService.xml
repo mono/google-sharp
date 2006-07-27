@@ -1,0 +1,29 @@
+<Type Name="GoogleService" FullName="Mono.Google.GoogleService">
+  <TypeSignature Language="C#" Value="public enum GoogleService" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Google</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Flags</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Members>
+    <Member MemberName="Picasa">
+      <MemberSignature Language="C#" Value="Picasa" />
+      <MemberType>Field</MemberType>
+      <ReturnValue>
+        <ReturnType>Mono.Google.GoogleService</ReturnType></ReturnValue>
+      <Docs>
+        <summary>Used for the http://picasaweb.google.com service.</summary></Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>This enumeration has the different Google services that can be used to log on using <see cref="T:Mono.Google.GoogleConnection" />.</summary>
+    <remarks>You can combine the different values if you want to log on to more that one service.</remarks>
+  </Docs>
+</Type>

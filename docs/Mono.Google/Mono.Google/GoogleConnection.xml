@@ -1,0 +1,151 @@
+<Type Name="GoogleConnection" FullName="Mono.Google.GoogleConnection">
+  <TypeSignature Language="C#" Value="public class GoogleConnection" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Google</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public GoogleConnection (Mono.Google.GoogleService service);" />
+      <MemberType>Constructor</MemberType>
+      <Parameters>
+        <Parameter Name="service" Type="Mono.Google.GoogleService" />
+      </Parameters>
+      <Docs>
+        <param name="service">A combination of the different services in <see cref="T:Mono.Google.GoogleService" /></param>
+        <summary>This is the only constructor for this class.</summary>
+        <remarks>Using only the services that you're actually going to use will speed up the log on process. Currently only Picasaweb is supported.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Authenticate">
+      <MemberSignature Language="C#" Value="public void Authenticate (string user, string password);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="user" Type="System.String" />
+        <Parameter Name="password" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="user">User name. </param>
+        <param name="password">Password for the given user. It can be null.</param>
+        <summary>Logs on to the service(s) specified in the constructor.</summary>
+        <remarks>
+          <para>The user name is the Google account and does not need the @gmail.com part of the email.</para>
+          <para>
+If the password is null, <see cref="M:Mono.Google.GoogleConnection.Authenticate" /> will just set the User property and will not attemp any connection. Some services might offer partial functionality for this case (for example, someone might let you download a full album from Picasaweb without the need for her password).
+</para>
+          <para>
+IMPORTANT: when running on mono, you need to set the certificate policy. This can be done with:
+</para>
+          <example>
+            <code lang="C#">
+ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
+  </code>
+          </example>
+
+See <see cref="T:Mono.Google.NoCheckCertificatePolicy" /> for more information.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DownloadString">
+      <MemberSignature Language="C#" Value="public string DownloadString (string url);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="url" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="url">The URL to get.</param>
+        <summary>Downloads data from an URL using the cookies that we got for the services used in this <see cref="T:Mono.Google.GoogleConnection" />.</summary>
+        <returns>To be added.</returns>
+        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DownloadBytes">
+      <MemberSignature Language="C#" Value="public byte[] DownloadBytes (string url);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Byte[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="url" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="url">The URL to get.</param>
+        <summary>Downloads data from an URL using the cookies that we got for the services used in this <see cref="T:Mono.Google.GoogleConnection" />.</summary>
+        <returns>A byte array with the data returned from the given URL.</returns>
+        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DownloadToStream">
+      <MemberSignature Language="C#" Value="public void DownloadToStream (string url, System.IO.Stream output);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="url" Type="System.String" />
+        <Parameter Name="output" Type="System.IO.Stream" />
+      </Parameters>
+      <Docs>
+        <param name="url">The URL to get.</param>
+        <param name="output">The data read from the URL will be written to this stream.</param>
+        <summary>Downloads data from an URL using the cookies that we got for the services used in this <see cref="T:Mono.Google.GoogleConnection" />.</summary>
+        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="User">
+      <MemberSignature Language="C#" Value="public string User { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>User name for this connection.</summary>
+        <value>User name passed to <see cref="M:Mono.Google.GoogleConnection.Authenticate" />.</value>
+        <remarks>You can only call <see cref="M:Mono.Google.GoogleConnection.Authenticate" /> once per <see cref="T:Mono.Google.GoogleConnection" /> instance, so this value will be null when not authenticated and the user name when authentication succeeded.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Service">
+      <MemberSignature Language="C#" Value="public Mono.Google.GoogleService Service { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>Mono.Google.GoogleService</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Returns the services that this connection will be able to handle.</summary>
+        <value>The same that was passed to the constructor when creating an instance.</value>
+        <remarks>None.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>This is the class used to perform the authentication against a Google service.</summary>
+    <remarks>
+      <example>
+        <code lang="C#">
+using Mono.Google;
+
+class Test {
+	public GoogleConnection Connect (string user, string passwd)
+	{
+		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
+		// Note: you need to set the certificate policy on Mono or the authentication will fail.
+		// See http://www.mono-project.com/FAQ:_Security for more information.
+		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
+		conn.Authenticate (user, passwd);
+		return conn;
+	}
+}
+  </code>
+      </example>
+    </remarks>
+  </Docs>
+</Type>

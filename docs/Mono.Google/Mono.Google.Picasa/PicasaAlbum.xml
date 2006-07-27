@@ -1,0 +1,141 @@
+<Type Name="PicasaAlbum" FullName="Mono.Google.Picasa.PicasaAlbum">
+  <TypeSignature Language="C#" Value="public class PicasaAlbum" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Google</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Members>
+    
+    <Member MemberName="Title">
+      <MemberSignature Language="C#" Value="public string Title { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Description">
+      <MemberSignature Language="C#" Value="public string Description { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Link">
+      <MemberSignature Language="C#" Value="public string Link { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="UniqueID">
+      <MemberSignature Language="C#" Value="public string UniqueID { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="RssLink">
+      <MemberSignature Language="C#" Value="public string RssLink { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="Access">
+      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.AlbumAccess Access { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>Mono.Google.Picasa.AlbumAccess</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="PicturesCount">
+      <MemberSignature Language="C#" Value="public int PicturesCount { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="PicturesRemaining">
+      <MemberSignature Language="C#" Value="public int PicturesRemaining { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+    <Member MemberName="User">
+      <MemberSignature Language="C#" Value="public string User { get; };" />
+      <MemberType>Property</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks></Docs>
+    </Member>
+  <Member MemberName="GetPictures">
+      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPictureCollection GetPictures ();" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>Mono.Google.Picasa.PicasaPictureCollection</ReturnType></ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks></Docs></Member>
+      <Member MemberName="UploadPicture">
+      <MemberSignature Language="C#" Value="public string UploadPicture (string title, System.IO.Stream input);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters>
+        <Parameter Name="title" Type="System.String" />
+        <Parameter Name="input" Type="System.IO.Stream" /></Parameters>
+      <Docs>
+        <param name="title">To be added.</param>
+        <param name="input">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks></Docs></Member><Member MemberName="UploadPicture">
+      <MemberSignature Language="C#" Value="public void UploadPicture (string filename);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters>
+        <Parameter Name="filename" Type="System.String" /></Parameters>
+      <Docs>
+        <param name="filename">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks></Docs></Member></Members>
+  <Docs>
+    <summary>Holds information about an album and lets you retrieve the information for the pictures it contains.</summary>
+    <remarks>See the example in <see cref="T:Mono.Google.Picasa.PicasaWeb" />.</remarks>
+  </Docs>
+</Type>

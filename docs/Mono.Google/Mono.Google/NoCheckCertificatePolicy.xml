@@ -1,0 +1,52 @@
+<Type Name="NoCheckCertificatePolicy" FullName="Mono.Google.NoCheckCertificatePolicy">
+  <TypeSignature Language="C#" Value="public class NoCheckCertificatePolicy : System.Net.ICertificatePolicy" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Google</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.Net.ICertificatePolicy</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public NoCheckCertificatePolicy ();" />
+      <MemberType>Constructor</MemberType>
+      <Parameters />
+      <Docs>
+        <summary>Constructor.</summary>
+        <remarks>None.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CheckValidationResult">
+      <MemberSignature Language="C#" Value="public bool CheckValidationResult (System.Net.ServicePoint a, System.Security.Cryptography.X509Certificates.X509Certificate b, System.Net.WebRequest c, int d);" />
+      <MemberType>Method</MemberType>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Net.ServicePoint" />
+        <Parameter Name="b" Type="System.Security.Cryptography.X509Certificates.X509Certificate" />
+        <Parameter Name="c" Type="System.Net.WebRequest" />
+        <Parameter Name="d" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <param name="c">To be added.</param>
+        <param name="d">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+  <Docs>
+    <summary>This class implements an ICertificatePolicy that performs no checks on the certificates.</summary>
+    <remarks>This class is provided as many people will find it useful when running under Mono. Why? See http://www.mono-project.com/FAQ:_Security: 'WebRequest.Create("https://www.anywhere.com"); throws an exception'.</remarks>
+  </Docs>
+</Type>
