@@ -123,7 +123,7 @@ namespace Mono.Google.Picasa {
 
 			// Check if pubDate can be in the past
 			string url = api.GetPostURL ();
-			string op_string = GetXmlForCreate (title, pubDate, access, conn.User);
+			string op_string = GetXmlForCreate (title, description, pubDate, access, conn.User);
 			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
 			MultipartRequest request = new MultipartRequest (url);
 			request.Request.CookieContainer = conn.Cookies;
@@ -164,10 +164,13 @@ namespace Mono.Google.Picasa {
 				" </channel>\n" +
 				"</rss>";
 
-		static string GetXmlForCreate (string title, DateTime date, AlbumAccess access, string username)
+		static string GetXmlForCreate (string title, string desc, DateTime date, AlbumAccess access, string username)
 		{
 			string acc = access.ToString ().ToLower (CultureInfo.InvariantCulture);
-			return String.Format (create_album_op, title, date, acc, username).Replace (":00", "00");
+			string result = String.Format (create_album_op, title, date, acc, username).Replace (":00", "00");
+			if (desc != null && (desc = desc.Trim ()) != "")
+				result = result.Replace ("  <description/>", String.Format ("  <description>{0}</description>", desc));
+			return result;
 		}
 
 		static string delete_album_op =

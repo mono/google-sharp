@@ -1,5 +1,10 @@
 2006-07-28 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
+	* src/Mono.Google.Picasa/PicasaWeb.cs: actually send the description
+	field when provided.
+
+2006-07-28 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
 	* src/Mono.Google.Picasa/PicasaWeb.cs: added a new overload of
 	DeleteAlbum.
 
