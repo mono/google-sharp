@@ -100,8 +100,6 @@ namespace Mono.Google.Picasa {
 			return coll;
 		}
 
-		static byte [] crlf = new byte [] { 13, 10 };
-
 		static string op_upload = 
 			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
 			"<rss version=\"2.0\" xmlns:gphoto=\"http://www.temp.com/\">\n" +
@@ -134,56 +132,27 @@ namespace Mono.Google.Picasa {
 				throw new ArgumentException ("Cannot read from stream", "input");
 
 			string url = API.GetPostURL ();
-			string bound_str1 = "---------------------" + url.GetHashCode ().ToString ("X");
-			string bound_head = "--" + bound_str1 + "\r\n";
-			string bound_end = "--" + bound_str1 + "--\r\n";
-			byte [] bound_end_bytes = Encoding.UTF8.GetBytes (bound_end);
+			MultipartRequest request = new MultipartRequest (url);
+			request.Request.CookieContainer = conn.Cookies;
+			request.BeginPart ();
+			request.AddHeader ("Content-Disposition: form-data; name=\"xml\"\r\n");
+			request.AddHeader ("Content-Type: text/plain; charset=utf8\r\n", true);
+			string upload = String.Format (op_upload, Connection.User, UniqueID, title, title.GetHashCode ().ToString ());
+			request.WriteContent (upload);
+			request.EndPart (false);
+			request.BeginPart ();
+			request.AddHeader (String.Format (disp_pic, title.GetHashCode ().ToString (), title));
+			request.AddHeader ("Content-Type: application/octet-stream\r\n", true);
 
-			HttpWebRequest request = (HttpWebRequest) WebRequest.Create (url);
-			request.Method = "POST";
-			request.CookieContainer = Connection.Cookies;
-			request.ContentType = "multipart/form-data; boundary=" + bound_str1;
-			request.UserAgent = "User-Agent: Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.4) Gecko/20060527 SUSE/1.5.0.4-1.3 Firefox/1.5.0.4";
-			string referer = String.Format ("http://picasaweb.google.com/lh/webUpload?uname={0}&aid={1}", User, UniqueID);
-			request.Referer = referer;
-
-			StringBuilder sb = new StringBuilder ();
-			sb.Append (bound_head);
-			sb.Append ("Content-Disposition: form-data; name=\"xml\"\r\nContent-Type: text/plain; charset=utf8\r\n\r\n");
-			sb.AppendFormat (op_upload, Connection.User, UniqueID, title, title.GetHashCode ().ToString ());
-			sb.Append ("\r\n");
-			sb.Append (bound_head);
-			sb.AppendFormat (disp_pic, title.GetHashCode ().ToString (), title);
-			sb.Append ("Content-Type: application/octet-stream\r\n\r\n");
-
-			Stream req_stream = request.GetRequestStream ();
-			byte [] data = Encoding.UTF8.GetBytes (sb.ToString ());
-			req_stream.Write (data, 0, data.Length);
-			data = new byte [8192];
+			byte [] data = new byte [8192];
 			int nread;
 			while ((nread = input.Read (data, 0, data.Length)) > 0) {
-				req_stream.Write (data, 0, nread);
+				request.WritePartialContent (data, 0, nread);
 			}
+			request.EndPartialContent ();
+			request.EndPart (true);
 
-			req_stream.Write (crlf, 0, crlf.Length);
-			req_stream.Write (bound_end_bytes, 0, bound_end_bytes.Length);
-			req_stream.Close ();
-
-			HttpWebResponse response = null;
-			try {
-				response = (HttpWebResponse) request.GetResponse ();
-			} catch (WebException wexc) {
-				response = (HttpWebResponse) wexc.Response;
-				if (response == null)
-					throw;
-			}
-
-			string received = null;
-			using (Stream stream = response.GetResponseStream ()) {
-				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
-				received = sr.ReadToEnd ();
-			}
-			response.Close ();
+			string received = request.GetResponseAsString ();
 			XmlDocument doc = new XmlDocument ();
 			doc.LoadXml (received);
 			XmlNode node = doc.SelectSingleNode ("/response/result");

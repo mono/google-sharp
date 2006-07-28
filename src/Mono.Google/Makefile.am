@@ -3,5 +3,6 @@ EXTRA_DIST=\
 	Authentication.cs \
 	GoogleConnection.cs \
 	GoogleService.cs \
+	MultipartRequest.cs \
 	NoCheckCertificatePolicy.cs
 

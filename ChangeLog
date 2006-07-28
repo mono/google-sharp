@@ -1,0 +1,10 @@
+2006-07-28 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google.Picasa/PicasaWeb.cs: simplify building POST requests
+	and added DeleteAlbum.
+	* src/Mono.Google.Picasa/PicasaAlbum.cs: simplify buildint POST
+	request.
+	* src/Mono.Google.Picasa/DeleteAlbumException.cs: new exception.
+	* src/Mono.Google/MultipartRequest.cs: wrapper for easy creation of a
+	multipart/form-data web request.
+

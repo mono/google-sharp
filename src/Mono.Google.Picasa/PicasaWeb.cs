@@ -110,11 +110,6 @@ namespace Mono.Google.Picasa {
 			return CreateAlbum (title, description, access, DateTime.Now);
 		}
 
-		static byte [] crlf = new byte [] { 13, 10 };
-		internal static byte [] xml_part_headers = Encoding.ASCII.GetBytes (
-				"Content-Disposition: form-data; name=\"xml\"\r\n" +
-				"Content-Type: text/plain; charset=utf8\r\n\r\n");
-
 		public string CreateAlbum (string title, string description, AlbumAccess access, DateTime pubDate)
 		{
 			if (title == null)
@@ -130,42 +125,15 @@ namespace Mono.Google.Picasa {
 			string url = api.GetPostURL ();
 			string op_string = GetXmlForCreate (title, pubDate, access, conn.User);
 			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
-			string bound_str1 = "---------------------" + op_string.GetHashCode ().ToString ("X");
-			string bound_head = "--" + bound_str1 + "\r\n";
-			string bound_end = "--" + bound_str1 + "--\r\n";
-			byte [] bound_bytes = Encoding.UTF8.GetBytes (bound_head);
-			byte [] bound_end_bytes = Encoding.UTF8.GetBytes (bound_end);
+			MultipartRequest request = new MultipartRequest (url);
+			request.Request.CookieContainer = conn.Cookies;
+			request.BeginPart ();
+			request.AddHeader ("Content-Disposition: form-data; name=\"xml\"\r\n");
+			request.AddHeader ("Content-Type: text/plain; charset=utf8\r\n", true);
+			request.WriteContent (op_bytes);
+			request.EndPart (true);
+			string received = request.GetResponseAsString ();
 
-			HttpWebRequest request = (HttpWebRequest) WebRequest.Create (url);
-			request.Method = "POST";
-			request.CookieContainer = conn.Cookies;
-			request.ContentType = "multipart/form-data; boundary=" + bound_str1;
-			//request.UserAgent = "Picasa/32.009998";
-			//request.Accept = "*/*";
-			//request.Headers.Add ("Accept-Language", "en");
-			Stream req_stream = request.GetRequestStream ();
-			req_stream.Write (bound_bytes, 0, bound_bytes.Length);
-			req_stream.Write (xml_part_headers, 0, xml_part_headers.Length);
-			req_stream.Write (op_bytes, 0, op_bytes.Length);
-			req_stream.Write (crlf, 0, crlf.Length);
-			req_stream.Write (bound_end_bytes, 0, bound_end_bytes.Length);
-			req_stream.Close ();
-
-			HttpWebResponse response = null;
-			try {
-				response = (HttpWebResponse) request.GetResponse ();
-			} catch (WebException wexc) {
-				response = (HttpWebResponse) wexc.Response;
-				if (response == null)
-					throw;
-			}
-
-			string received = "";
-			using (Stream stream = response.GetResponseStream ()) {
-				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
-				received = sr.ReadToEnd ();
-			}
-			response.Close ();
 			XmlDocument doc = new XmlDocument ();
 			doc.LoadXml (received);
 			XmlNode node = doc.SelectSingleNode ("/response/result");
@@ -200,6 +168,48 @@ namespace Mono.Google.Picasa {
 		{
 			string acc = access.ToString ().ToLower (CultureInfo.InvariantCulture);
 			return String.Format (create_album_op, title, date, acc, username).Replace (":00", "00");
+		}
+
+		static string delete_album_op =
+				"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
+				"<rss version=\"2.0\" xmlns:gphoto=\"http://www.temp.com/\">\n" +
+				"  <channel>\n" +
+				"    <gphoto:user>{0}</gphoto:user>\n" +
+				"    <gphoto:id>{1}</gphoto:id>\n" +
+				"    <gphoto:op>deleteAlbum</gphoto:op>\n" +
+				"  </channel>\n" +
+				"</rss>";
+
+		public void DeleteAlbum (string unique_id)
+		{
+			if (unique_id == null)
+				throw new ArgumentNullException ("unique_id");
+
+			string url = api.GetPostURL ();
+			string op_string = String.Format (delete_album_op, conn.User, unique_id);
+			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
+			MultipartRequest request = new MultipartRequest (url);
+			request.Request.CookieContainer = conn.Cookies;
+			request.BeginPart ();
+			request.AddHeader ("Content-Disposition: form-data; name=\"xml\"\r\n");
+			request.AddHeader ("Content-Type: text/plain; charset=utf8\r\n", true);
+			request.WriteContent (op_bytes);
+			request.EndPart (true);
+			string received = request.GetResponseAsString ();
+
+			XmlDocument doc = new XmlDocument ();
+			doc.LoadXml (received);
+			XmlNode node = doc.SelectSingleNode ("/response/result");
+			if (node == null)
+				throw new DeleteAlbumException ("Invalid response from server");
+
+			if (node.InnerText != "success") {
+				node = doc.SelectSingleNode ("/response/reason");
+				if (node == null)
+					throw new DeleteAlbumException ("Unknown reason");
+					
+				throw new DeleteAlbumException (node.InnerText);
+			}
 		}
 
 		public PicasaAlbumCollection GetAlbums ()

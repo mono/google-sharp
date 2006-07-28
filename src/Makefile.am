@@ -16,9 +16,11 @@ monogoogle_sources  = \
 			Mono.Google/Authentication.cs \
 			Mono.Google/GoogleService.cs \
 			Mono.Google/GoogleConnection.cs \
+			Mono.Google/MultipartRequest.cs \
 			Mono.Google/NoCheckCertificatePolicy.cs \
 			Mono.Google.Picasa/AlbumAccess.cs \
 			Mono.Google.Picasa/CreateAlbumException.cs \
+			Mono.Google.Picasa/DeleteAlbumException.cs \
 			Mono.Google.Picasa/PicasaAlbum.cs \
 			Mono.Google.Picasa/PicasaAlbumCollection.cs \
 			Mono.Google.Picasa/PicasaPicture.cs \
