@@ -18,60 +18,77 @@
       <MemberSignature Language="C#" Value="public string[] AllKeys { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue>
-        <ReturnType>System.String[]</ReturnType></ReturnValue>
+        <ReturnType>System.String[]</ReturnType>
+      </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks></Docs>
+        <summary>Returns the keys (unique IDs) of all the pictures in the collection.</summary>
+        <value>Array containing the <see cref="M:Mono.Google.Picasa.PicasaPicture.UniqueID" /> values from all the pictures in the collection.</value>
+        <remarks>None.</remarks>
+      </Docs>
     </Member>
     <Member MemberName="Item">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture Item[int index] { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaPicture</ReturnType></ReturnValue>
+        <ReturnType>Mono.Google.Picasa.PicasaPicture</ReturnType>
+      </ReturnValue>
       <Parameters>
-        <Parameter Name="index" Type="System.Int32" /></Parameters>
+        <Parameter Name="index" Type="System.Int32" />
+      </Parameters>
       <Docs>
-        <param name="index">To be added.</param>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks></Docs>
+        <param name="index">The index of te picture we want to get.</param>
+        <summary>Gets the nth picture in the collection.</summary>
+        <value>A <see cref="T:Mono.Google.Picasa.PicasaPicture" />.</value>
+        <remarks>None.</remarks>
+      </Docs>
     </Member>
     <Member MemberName="Item">
-      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture Item[string name] { get; };" />
+      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture Item[string uniqueID] { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaPicture</ReturnType></ReturnValue>
+        <ReturnType>Mono.Google.Picasa.PicasaPicture</ReturnType>
+      </ReturnValue>
       <Parameters>
-        <Parameter Name="name" Type="System.String" /></Parameters>
+        <Parameter Name="uniqueID" Type="System.String" />
+      </Parameters>
       <Docs>
-        <param name="name">To be added.</param>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks></Docs>
+        <param name="uniqueID">Unique ID of the picture we want to get.</param>
+        <summary>Gets the picture with the specified <see cref="M:Mono.Google.Picasa.PicasaPicture.UniqueID" />.</summary>
+        <value>null if not found, a PicasaPicture otherwise.</value>
+        <remarks>None.</remarks>
+      </Docs>
     </Member>
-  <Member MemberName="GetByTitle">
+    <Member MemberName="GetByTitle">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture GetByTitle (string title);" />
       <MemberType>Method</MemberType>
       <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaPicture</ReturnType></ReturnValue>
+        <ReturnType>Mono.Google.Picasa.PicasaPicture</ReturnType>
+      </ReturnValue>
       <Parameters>
-        <Parameter Name="title" Type="System.String" /></Parameters>
+        <Parameter Name="title" Type="System.String" />
+      </Parameters>
       <Docs>
-        <param name="title">To be added.</param>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks></Docs></Member><Member MemberName="AllValues">
+        <param name="title">Picture title that we're looking for.</param>
+        <summary>Gets a picture by its <see cref="M:Mono.Google.Picasa.PicasaPicture.Title" />.</summary>
+        <returns>null if the title is not found, a PicasaPicture otherwise.</returns>
+        <remarks>None.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AllValues">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture[] AllValues { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaPicture[]</ReturnType></ReturnValue>
+        <ReturnType>Mono.Google.Picasa.PicasaPicture[]</ReturnType>
+      </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks></Docs></Member></Members>
+        <summary>Returns all the <see cref="T:Mono.Google.Picasa.PicasaPicture" /> in the collection.</summary>
+        <value>An array with all the pictures in the collection.</value>
+        <remarks>None.</remarks>
+      </Docs>
+    </Member>
+  </Members>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>A collection of <see cref="T:Mono.Google.Picasa.PicasaPicture" />.</summary>
+    <remarks>None.</remarks>
   </Docs>
 </Type>

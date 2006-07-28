@@ -34,6 +34,7 @@
       <Type Name="AlbumAccess" />
       <Type Name="PicasaAlbumCollection" />
       <Type Name="PicasaPictureCollection" />
+      <Type Name="DeleteAlbumException" />
     </Namespace>
   </Types>
   <Title>Mono.Google</Title>

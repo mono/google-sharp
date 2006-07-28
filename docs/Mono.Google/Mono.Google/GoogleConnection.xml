@@ -13,24 +13,20 @@
       <MemberSignature Language="C#" Value="public GoogleConnection (Mono.Google.GoogleService service);" />
       <MemberType>Constructor</MemberType>
       <Parameters>
-        <Parameter Name="service" Type="Mono.Google.GoogleService" />
-      </Parameters>
+        <Parameter Name="service" Type="Mono.Google.GoogleService" /></Parameters>
       <Docs>
         <param name="service">A combination of the different services in <see cref="T:Mono.Google.GoogleService" /></param>
         <summary>This is the only constructor for this class.</summary>
-        <remarks>Using only the services that you're actually going to use will speed up the log on process. Currently only Picasaweb is supported.</remarks>
-      </Docs>
+        <remarks>Using only the services that you're actually going to use will speed up the log on process. Currently only Picasaweb is supported.</remarks></Docs>
     </Member>
     <Member MemberName="Authenticate">
       <MemberSignature Language="C#" Value="public void Authenticate (string user, string password);" />
       <MemberType>Method</MemberType>
       <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
+        <ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters>
         <Parameter Name="user" Type="System.String" />
-        <Parameter Name="password" Type="System.String" />
-      </Parameters>
+        <Parameter Name="password" Type="System.String" /></Parameters>
       <Docs>
         <param name="user">User name. </param>
         <param name="password">Password for the given user. It can be null.</param>
@@ -49,81 +45,67 @@ ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
   </code>
           </example>
 
-See <see cref="T:Mono.Google.NoCheckCertificatePolicy" /> for more information.</remarks>
-      </Docs>
+See <see cref="T:Mono.Google.NoCheckCertificatePolicy" /> for more information.</remarks></Docs>
     </Member>
     <Member MemberName="DownloadString">
       <MemberSignature Language="C#" Value="public string DownloadString (string url);" />
       <MemberType>Method</MemberType>
       <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
       <Parameters>
-        <Parameter Name="url" Type="System.String" />
-      </Parameters>
+        <Parameter Name="url" Type="System.String" /></Parameters>
       <Docs>
         <param name="url">The URL to get.</param>
         <summary>Downloads data from an URL using the cookies that we got for the services used in this <see cref="T:Mono.Google.GoogleConnection" />.</summary>
         <returns>To be added.</returns>
-        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks>
-      </Docs>
+        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks></Docs>
     </Member>
     <Member MemberName="DownloadBytes">
       <MemberSignature Language="C#" Value="public byte[] DownloadBytes (string url);" />
       <MemberType>Method</MemberType>
       <ReturnValue>
-        <ReturnType>System.Byte[]</ReturnType>
-      </ReturnValue>
+        <ReturnType>System.Byte[]</ReturnType></ReturnValue>
       <Parameters>
-        <Parameter Name="url" Type="System.String" />
-      </Parameters>
+        <Parameter Name="url" Type="System.String" /></Parameters>
       <Docs>
         <param name="url">The URL to get.</param>
         <summary>Downloads data from an URL using the cookies that we got for the services used in this <see cref="T:Mono.Google.GoogleConnection" />.</summary>
         <returns>A byte array with the data returned from the given URL.</returns>
-        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks>
-      </Docs>
+        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks></Docs>
     </Member>
     <Member MemberName="DownloadToStream">
       <MemberSignature Language="C#" Value="public void DownloadToStream (string url, System.IO.Stream output);" />
       <MemberType>Method</MemberType>
       <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
+        <ReturnType>System.Void</ReturnType></ReturnValue>
       <Parameters>
         <Parameter Name="url" Type="System.String" />
-        <Parameter Name="output" Type="System.IO.Stream" />
-      </Parameters>
+        <Parameter Name="output" Type="System.IO.Stream" /></Parameters>
       <Docs>
         <param name="url">The URL to get.</param>
         <param name="output">The data read from the URL will be written to this stream.</param>
         <summary>Downloads data from an URL using the cookies that we got for the services used in this <see cref="T:Mono.Google.GoogleConnection" />.</summary>
-        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks>
-      </Docs>
+        <remarks>If the URL is not in the same domain(s) of the services used for this connection, no cookies will be sent, i.e., it will be just a regular GET on the URL.</remarks></Docs>
     </Member>
     <Member MemberName="User">
       <MemberSignature Language="C#" Value="public string User { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
+        <ReturnType>System.String</ReturnType></ReturnValue>
       <Docs>
         <summary>User name for this connection.</summary>
         <value>User name passed to <see cref="M:Mono.Google.GoogleConnection.Authenticate" />.</value>
-        <remarks>You can only call <see cref="M:Mono.Google.GoogleConnection.Authenticate" /> once per <see cref="T:Mono.Google.GoogleConnection" /> instance, so this value will be null when not authenticated and the user name when authentication succeeded.</remarks>
-      </Docs>
+        <remarks>You can only call <see cref="M:Mono.Google.GoogleConnection.Authenticate" /> once per <see cref="T:Mono.Google.GoogleConnection" /> instance, so this value will be null when not authenticated and the user name when authentication succeeded.</remarks></Docs>
     </Member>
     <Member MemberName="Service">
       <MemberSignature Language="C#" Value="public Mono.Google.GoogleService Service { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue>
-        <ReturnType>Mono.Google.GoogleService</ReturnType>
-      </ReturnValue>
+        <ReturnType>Mono.Google.GoogleService</ReturnType></ReturnValue>
       <Docs>
         <summary>Returns the services that this connection will be able to handle.</summary>
         <value>The same that was passed to the constructor when creating an instance.</value>
-        <remarks>None.</remarks>
-      </Docs>
+        <remarks>None.</remarks></Docs>
     </Member>
   </Members>
   <Docs>

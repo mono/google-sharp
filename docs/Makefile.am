@@ -35,7 +35,7 @@ update-delete:
 	$(UPDATER) --delete
 
 merge:
-	monodoc --merge-changes ~/.config/monodoc/changeset.xml
+	monodoc --merge-changes ~/.config/monodoc/changeset.xml .
 
 dist-hook:
 	mkdir -p $(distdir)/Mono.Google

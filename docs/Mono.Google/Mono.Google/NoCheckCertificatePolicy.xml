@@ -19,21 +19,18 @@
       <Parameters />
       <Docs>
         <summary>Constructor.</summary>
-        <remarks>None.</remarks>
-      </Docs>
+        <remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="CheckValidationResult">
       <MemberSignature Language="C#" Value="public bool CheckValidationResult (System.Net.ServicePoint a, System.Security.Cryptography.X509Certificates.X509Certificate b, System.Net.WebRequest c, int d);" />
       <MemberType>Method</MemberType>
       <ReturnValue>
-        <ReturnType>System.Boolean</ReturnType>
-      </ReturnValue>
+        <ReturnType>System.Boolean</ReturnType></ReturnValue>
       <Parameters>
         <Parameter Name="a" Type="System.Net.ServicePoint" />
         <Parameter Name="b" Type="System.Security.Cryptography.X509Certificates.X509Certificate" />
         <Parameter Name="c" Type="System.Net.WebRequest" />
-        <Parameter Name="d" Type="System.Int32" />
-      </Parameters>
+        <Parameter Name="d" Type="System.Int32" /></Parameters>
       <Docs>
         <param name="a">To be added.</param>
         <param name="b">To be added.</param>
@@ -41,8 +38,7 @@
         <param name="d">To be added.</param>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
+        <remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>
