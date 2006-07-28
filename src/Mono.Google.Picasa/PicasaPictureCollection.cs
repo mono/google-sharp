@@ -6,7 +6,7 @@
 //
 
 //
-// Copyright (C) 2005 Novell, Inc (http://www.novell.com)
+// Copyright (C) 2006 Novell, Inc (http://www.novell.com)
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -69,8 +69,8 @@ namespace Mono.Google.Picasa {
 			get { return (PicasaPicture) BaseGet (index); }
 		}
 
-		public PicasaPicture this [string name] {
-			get { return (PicasaPicture) BaseGet (name); }
+		public PicasaPicture this [string uniqueID] {
+			get { return (PicasaPicture) BaseGet (uniqueID); }
 		}
 
 		public string [] AllKeys {

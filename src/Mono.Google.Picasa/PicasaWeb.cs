@@ -180,6 +180,14 @@ namespace Mono.Google.Picasa {
 				"  </channel>\n" +
 				"</rss>";
 
+		public void DeleteAlbum (PicasaAlbum album)
+		{
+			if (album == null)
+				throw new ArgumentNullException ("album");
+
+			DeleteAlbum (album.UniqueID);
+		}
+
 		public void DeleteAlbum (string unique_id)
 		{
 			if (unique_id == null)
@@ -233,18 +241,9 @@ namespace Mono.Google.Picasa {
 			node = channel.SelectSingleNode ("gphoto:nickname", nsmgr);
 			nickname = node.InnerText;
 			node = channel.SelectSingleNode ("gphoto:quotacurrent", nsmgr);
-			if (node == null) {
-				quota_used = -1;
-			} else {
-				quota_used = (long) UInt64.Parse (node.InnerText);
-			}
+			quota_used = (node != null) ? (long) UInt64.Parse (node.InnerText) : -1;
 			node = channel.SelectSingleNode ("gphoto:quotalimit", nsmgr);
-			if (node == null) {
-				quota_limit = -1;
-			} else {
-				quota_limit = (long) UInt64.Parse (node.InnerText);
-			}
-
+			quota_limit = (node != null) ? (long) UInt64.Parse (node.InnerText) : -1;
 			PicasaAlbumCollection coll = new PicasaAlbumCollection ();
 			foreach (XmlNode item in channel.SelectNodes ("item")) {
 				coll.Add (PicasaAlbum.ParseAlbumInfo (this, item, nsmgr));

@@ -68,8 +68,8 @@ namespace Mono.Google.Picasa {
 			get { return (PicasaAlbum) BaseGet (index); }
 		}
 
-		public PicasaAlbum this [string name] {
-			get { return (PicasaAlbum) BaseGet (name); }
+		public PicasaAlbum this [string uniqueID] {
+			get { return (PicasaAlbum) BaseGet (uniqueID); }
 		}
 
 		public string [] AllKeys {

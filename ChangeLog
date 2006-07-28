@@ -1,5 +1,14 @@
 2006-07-28 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
+	* src/Mono.Google.Picasa/PicasaWeb.cs: added a new overload of
+	DeleteAlbum.
+
+	* src/Mono.Google.Picasa/PicasaAlbumCollection.cs:
+	* src/Mono.Google.Picasa/PicasaPictureCollection.cs: rename a
+	parameter.
+
+2006-07-28 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
 	* src/Mono.Google.Picasa/PicasaWeb.cs: simplify building POST requests
 	and added DeleteAlbum.
 	* src/Mono.Google.Picasa/PicasaAlbum.cs: simplify buildint POST
