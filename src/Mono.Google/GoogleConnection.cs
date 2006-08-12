@@ -136,8 +136,6 @@ namespace Mono.Google {
 				int nread;
 				while ((nread = stream.Read (bytes, 0, bytes.Length)) > 0) {
 					output.Write (bytes, 0, nread);
-					if (nread < bytes.Length)
-						break;
 				}
 			}
 			response.Close ();
