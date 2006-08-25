@@ -58,13 +58,15 @@ namespace Mono.Google.Picasa {
 			PicasaPicture picture = new PicasaPicture (conn, album);
 			picture.title = nodeitem.SelectSingleNode ("title").InnerText;
 			picture.description = nodeitem.SelectSingleNode ("description").InnerText;
-			picture.pub_date = DateTime.ParseExact (nodeitem.SelectSingleNode ("pubDate").InnerText, "d' 'MMM' 'yyyy' 'HH':'mm':'ss' 'zzz", null);
+			picture.pub_date = DateTime.ParseExact (nodeitem.SelectSingleNode ("pubDate").InnerText, "d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz", null);
 			picture.thumbnail_url = nodeitem.SelectSingleNode ("photo:thumbnail", nsmgr).InnerText;
 			picture.image_url = nodeitem.SelectSingleNode ("photo:imgsrc", nsmgr).InnerText;
 			picture.width = (int) UInt32.Parse (nodeitem.SelectSingleNode ("gphoto:width", nsmgr).InnerText);
 			picture.height = (int) UInt32.Parse (nodeitem.SelectSingleNode ("gphoto:height", nsmgr).InnerText);
-			picture.index = (int) UInt32.Parse (nodeitem.SelectSingleNode ("gphoto:index", nsmgr).InnerText);
-			picture.id = nodeitem.SelectSingleNode ("gphoto:id", nsmgr).InnerText;
+			XmlNode node = nodeitem.SelectSingleNode ("gphoto:index", nsmgr);
+			picture.index = (node != null) ? (int) UInt32.Parse (node.InnerText) : -1;
+			node = nodeitem.SelectSingleNode ("gphoto:id", nsmgr);
+			picture.id = (node != null) ? node.InnerText : "auto" + picture.title.GetHashCode ().ToString ();
 			return picture;
 		}
 

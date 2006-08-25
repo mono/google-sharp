@@ -37,7 +37,9 @@ namespace Mono.Google.Picasa {
 		//string album_page;
 		string gallery;
 		//string gallery_page;
+		string album_rss;
 		string post;
+		string upgrade_storage;
 
 		internal PicasaV1 (GoogleConnection conn)
 		{
@@ -56,6 +58,12 @@ namespace Mono.Google.Picasa {
 				case "post":
 					post = link_node.InnerText;
 					break;
+				case "album":
+					album_rss = link_node.InnerText;
+					break;
+				case "upgradeStorage":
+					upgrade_storage = link_node.InnerText;
+					break;
 				default:
 					break;
 				}
@@ -65,6 +73,21 @@ namespace Mono.Google.Picasa {
 		public string GetGalleryLink (string user)
 		{
 			return gallery.Replace ("{username}", user); // URLEncode user name?
+		}
+
+		public string GetUpgradeStorageLink ()
+		{
+			return upgrade_storage;
+		}
+
+		public string GetAlbumRSS (string aid)
+		{
+			return album_rss.Replace ("{id}", aid);
+		}
+
+		public string GetAlbumRSS (string user, string aid)
+		{
+			return album_rss.Replace ("{username}", user).Replace ("{id}", aid);
 		}
 
 		public string GetPostURL ()

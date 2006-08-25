@@ -39,9 +39,10 @@ namespace Mono.Google {
 	class MultipartRequest {
 		static byte [] crlf = new byte [] { 13, 10 };
 		HttpWebRequest request;
-		Stream req_stream;
+		Stream output_stream;
 		byte [] bound_bytes;
 		byte [] bound_end_bytes;
+		bool output_set;
 
 		public MultipartRequest (string url)
 		{
@@ -60,12 +61,20 @@ namespace Mono.Google {
 			get { return request; }
 		}
 
+		public Stream OutputStream {
+			get { return output_stream; }
+			set {
+				output_set = true;
+				output_stream = value;
+			}
+		}
+
 		public void BeginPart ()
 		{
-			if (req_stream == null)
-				req_stream = request.GetRequestStream ();
+			if (output_stream == null)
+				output_stream = request.GetRequestStream ();
 
-			req_stream.Write (bound_bytes, 0, bound_bytes.Length);
+			output_stream.Write (bound_bytes, 0, bound_bytes.Length);
 		}
 
 		public void AddHeader (string name, string val)
@@ -87,11 +96,11 @@ namespace Mono.Google {
 		{
 			bool need_crlf = !header.EndsWith ("\r\n");
 			byte [] bytes = Encoding.UTF8.GetBytes (header);
-			req_stream.Write (bytes, 0, bytes.Length);
+			output_stream.Write (bytes, 0, bytes.Length);
 			if (need_crlf)
-				req_stream.Write (crlf, 0, 2);
+				output_stream.Write (crlf, 0, 2);
 			if (last)
-				req_stream.Write (crlf, 0, 2);
+				output_stream.Write (crlf, 0, 2);
 		}
 
 		public void WriteContent (string content)
@@ -101,42 +110,37 @@ namespace Mono.Google {
 
 		public void WriteContent (byte [] content)
 		{
-			req_stream.Write (content, 0, content.Length);
-			req_stream.Write (crlf, 0, crlf.Length);
+			output_stream.Write (content, 0, content.Length);
+			output_stream.Write (crlf, 0, crlf.Length);
 		}
 
 		public void WritePartialContent (byte [] content, int offset, int nbytes)
 		{
-			req_stream.Write (content, offset, nbytes);
+			output_stream.Write (content, offset, nbytes);
 		}
 
 		public void EndPartialContent ()
 		{
-			req_stream.Write (crlf, 0, crlf.Length);
+			output_stream.Write (crlf, 0, crlf.Length);
 		}
 
 		public void EndPart (bool last)
 		{
 			if (last) {
-				req_stream.Write (bound_end_bytes, 0, bound_end_bytes.Length);
-				req_stream.Close ();
+				output_stream.Write (bound_end_bytes, 0, bound_end_bytes.Length);
+				if (!output_set)
+					output_stream.Close ();
 			} else {
-				req_stream.Write (bound_bytes, 0, bound_bytes.Length);
+				output_stream.Write (bound_bytes, 0, bound_bytes.Length);
 			}
 		}
 
 		public string GetResponseAsString ()
 		{
 			HttpWebResponse response = null;
-			try {
-				response = (HttpWebResponse) request.GetResponse ();
-			} catch (WebException wexc) {
-				response = (HttpWebResponse) wexc.Response;
-				if (response == null)
-					throw;
-			}
-
+			response = (HttpWebResponse) request.GetResponse ();
 			string received = "";
+			// FIXME: use CharacterSet?
 			using (Stream stream = response.GetResponseStream ()) {
 				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
 				received = sr.ReadToEnd ();

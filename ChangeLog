@@ -1,3 +1,29 @@
+2006-08-25 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* sample/Makefile.am:
+	* src/Makefile.am:
+	* src/Mono.Google.Picasa/Makefile.am:
+	* src/Mono.Google.Picasa/UploadProgressEventArgs.cs:
+	* src/Mono.Google.Picasa/UploadProgressEventHandler.cs: upload progress
+	event handler.
+
+	* src/Mono.Google.Picasa/PicasaPicture.cs: use the right format for date
+	parsing. Some fields are now optional, as we can download public albums
+	or private albums with known id without the need for an authenticated
+	user.
+
+	* src/Mono.Google.Picasa/PicasaAlbum.cs: new static method to get the
+	pictures from known albums (user, album id needed). New
+	UploadProgress event to give feedback while uploading.
+
+	* src/Mono.Google.Picasa/PicasaV1.cs: retrieve the upgrade storage link
+	* and album RSS.
+
+	* src/Mono.Google/MultipartRequest.cs: if the response throws, don't
+	intercept that exception so that the user knows what's going on. Support
+	for buffering in a stream different than the request stream, needed when
+	the upload progress event is used.
+
 2006-08-12 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google/GoogleConnection.cs: make DownloadToStream work on

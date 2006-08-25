@@ -37,7 +37,8 @@ using System.Xml;
 namespace Mono.Google.Picasa {
 	public class PicasaAlbum {
 		GoogleConnection conn;
-		PicasaWeb picasa_web;
+		string user;
+		PicasaV1 api;
 		string title;
 		string description;
 		string id;
@@ -50,12 +51,25 @@ namespace Mono.Google.Picasa {
 		internal PicasaAlbum (PicasaWeb pw)
 		{
 			this.conn = pw.Connection;
-			this.picasa_web = pw;
+			this.user = pw.User;
+			this.api = pw.API;
+		}
+
+		internal PicasaAlbum (GoogleConnection conn)
+		{
+			this.conn = conn;
+			api = new PicasaV1 (conn);
+			user = conn.User;
 		}
 
 		internal static PicasaAlbum ParseAlbumInfo (PicasaWeb pw, XmlNode nodeitem, XmlNamespaceManager nsmgr)
 		{
 			PicasaAlbum album = new PicasaAlbum (pw);
+			return ParseAlbumInfo (album, nodeitem, nsmgr);
+		}
+
+		static PicasaAlbum ParseAlbumInfo (PicasaAlbum album, XmlNode nodeitem, XmlNamespaceManager nsmgr)
+		{
 			album.title = nodeitem.SelectSingleNode ("title").InnerText;
 			album.description = nodeitem.SelectSingleNode ("description").InnerText;
 			album.link = nodeitem.SelectSingleNode ("link").InnerText;
@@ -79,6 +93,35 @@ namespace Mono.Google.Picasa {
 			if (node != null)
 				album.num_photos_remaining = (int) UInt32.Parse (node.InnerText);
 			return album;
+		}
+
+		public static PicasaPictureCollection GetPictures (string user, string aid)
+		{
+			if (user == null || user == String.Empty)
+				throw new ArgumentNullException ("user");
+			if (aid == null || aid == String.Empty)
+				throw new ArgumentNullException ("aid");
+
+			GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
+			conn.Authenticate (user, null);
+			PicasaAlbum album = new PicasaAlbum (conn);
+			string link = album.API.GetAlbumRSS (user, aid);
+			album.rsslink = link;
+			string received = conn.DownloadString (link);
+			XmlDocument doc = new XmlDocument ();
+			doc.LoadXml (received);
+			XmlNamespaceManager nsmgr = new XmlNamespaceManager (doc.NameTable);
+			nsmgr.AddNamespace ("photo", "http://www.pheed.com/pheed/");
+			nsmgr.AddNamespace ("media", "http://search.yahoo.com/mrss/");
+			nsmgr.AddNamespace ("gphoto", "http://picasaweb.google.com/lh/picasaweb/");
+			XmlNode channel = doc.SelectSingleNode ("/rss/channel", nsmgr);
+			ParseAlbumInfo (album, channel, nsmgr);
+			PicasaPictureCollection coll = new PicasaPictureCollection ();
+			foreach (XmlNode item in channel.SelectNodes ("item")) {
+				coll.Add (PicasaPicture.ParsePictureInfo (conn, album, item, nsmgr));
+			}
+			coll.SetReadOnly ();
+			return coll;
 		}
 
 		public PicasaPictureCollection GetPictures ()
@@ -122,6 +165,11 @@ namespace Mono.Google.Picasa {
 
 		public string UploadPicture (string title, Stream input)
 		{
+			return UploadPicture (title, null, input);
+		}
+
+		public string UploadPicture (string title, string description, Stream input)
+		{
 			if (title == null)
 				throw new ArgumentNullException ("title");
 
@@ -134,10 +182,20 @@ namespace Mono.Google.Picasa {
 			string url = API.GetPostURL ();
 			MultipartRequest request = new MultipartRequest (url);
 			request.Request.CookieContainer = conn.Cookies;
+			MemoryStream ms = null;
+			if (UploadProgress != null) {
+				// We do 'manual' buffering
+				request.Request.AllowWriteStreamBuffering = false;
+				ms = new MemoryStream ();
+				request.OutputStream = ms;
+			}
+
 			request.BeginPart ();
 			request.AddHeader ("Content-Disposition: form-data; name=\"xml\"\r\n");
 			request.AddHeader ("Content-Type: text/plain; charset=utf8\r\n", true);
 			string upload = String.Format (op_upload, Connection.User, UniqueID, title, title.GetHashCode ().ToString ());
+			if (description != null && description != String.Empty)
+				upload = upload.Replace ("   <description/>", String.Format ("   <description>{0}</description>", description));
 			request.WriteContent (upload);
 			request.EndPart (false);
 			request.BeginPart ();
@@ -150,7 +208,26 @@ namespace Mono.Google.Picasa {
 				request.WritePartialContent (data, 0, nread);
 			}
 			request.EndPartialContent ();
-			request.EndPart (true);
+			request.EndPart (true); // It won't call Close() on the MemoryStream
+
+			if (UploadProgress != null) {
+				int req_length = (int) ms.Length;
+				request.Request.ContentLength = req_length;
+				DoUploadProgress (title, 0, req_length);
+				using (Stream req_stream = request.Request.GetRequestStream ()) {
+					byte [] buffer = ms.GetBuffer ();
+					int nwrite = 0;
+					int offset;
+					for (offset = 0; offset < req_length; offset += nwrite) {
+						nwrite = System.Math.Min (16384, req_length - offset);
+						req_stream.Write (buffer, offset, nwrite);
+						// The progress uses the actual request size, not file size.
+						DoUploadProgress (title, offset, req_length);
+					}
+					DoUploadProgress (title, offset, req_length);
+
+				}
+			}
 
 			string received = request.GetResponseAsString ();
 			XmlDocument doc = new XmlDocument ();
@@ -169,14 +246,19 @@ namespace Mono.Google.Picasa {
 			return doc.SelectSingleNode ("/response/id").InnerText;
 		}
 
-		public void UploadPicture (string filename)
+		public string UploadPicture (string filename)
+		{
+			return UploadPicture (filename, "");
+		}
+
+		public string UploadPicture (string filename, string description)
 		{
 			if (filename == null)
 				throw new ArgumentNullException ("filename");
 
 			string title = Path.GetFileName (filename);
 			using (Stream stream = File.OpenRead (filename)) {
-				UploadPicture (title, stream);
+				return UploadPicture (title, description, stream);
 			}
 		}
 
@@ -213,16 +295,25 @@ namespace Mono.Google.Picasa {
 		}
 
 		public string User {
-			get { return picasa_web.User; }
+			get { return user; }
 		}
 
 		internal PicasaV1 API {
-			get { return picasa_web.API; }
+			get { return api; }
 		}
 
 		internal GoogleConnection Connection {
 			get { return conn; }
 		}
+
+		void DoUploadProgress (string title, long sent, long total)
+		{
+			if (UploadProgress != null) {
+				UploadProgress (this, new UploadProgressEventArgs (title, sent, total));
+			}
+		}
+
+		public event UploadProgressEventHandler UploadProgress;
 	}
 }
 
