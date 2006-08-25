@@ -12,24 +12,14 @@
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public UploadPictureException (string msg);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="msg" Type="System.String" /></Parameters>
-      <Docs>
-        <param name="msg">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks></Docs>
+      <Parameters><Parameter Name="msg" Type="System.String" /></Parameters>
+      <Docs><param name="msg">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="protected UploadPictureException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" /></Parameters>
-      <Docs>
-        <param name="info">To be added.</param>
-        <param name="context">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks></Docs>
+      <Parameters><Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" /><Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" /></Parameters>
+      <Docs><param name="info">To be added.</param><param name="context">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>

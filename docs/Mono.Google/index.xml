@@ -35,6 +35,8 @@
       <Type Name="PicasaAlbumCollection" />
       <Type Name="PicasaPictureCollection" />
       <Type Name="DeleteAlbumException" />
+      <Type Name="UploadProgressEventArgs" />
+      <Type Name="UploadProgressEventHandler" />
     </Namespace>
   </Types>
   <Title>Mono.Google</Title>

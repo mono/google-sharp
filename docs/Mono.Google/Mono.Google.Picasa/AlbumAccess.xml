@@ -11,18 +11,14 @@
     <Member MemberName="Public">
       <MemberSignature Language="C#" Value="Public" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.AlbumAccess</ReturnType></ReturnValue>
-      <Docs>
-        <summary>The album is listed in your Picasaweb home.</summary></Docs>
+      <ReturnValue><ReturnType>Mono.Google.Picasa.AlbumAccess</ReturnType></ReturnValue>
+      <Docs><summary>The album is listed in your Picasaweb home.</summary></Docs>
     </Member>
     <Member MemberName="Private">
       <MemberSignature Language="C#" Value="Private" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.AlbumAccess</ReturnType></ReturnValue>
-      <Docs>
-        <summary>Only people that know the URL for this albums can browse it.</summary></Docs>
+      <ReturnValue><ReturnType>Mono.Google.Picasa.AlbumAccess</ReturnType></ReturnValue>
+      <Docs><summary>Only people that know the URL for this albums can browse it.</summary></Docs>
     </Member>
   </Members>
   <Docs>

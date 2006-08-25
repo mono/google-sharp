@@ -12,184 +12,98 @@
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public PicasaWeb (Mono.Google.GoogleConnection conn);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="conn" Type="Mono.Google.GoogleConnection" /></Parameters>
-      <Docs>
-        <param name="conn">A <see cref="T:Mono.Google.GoogleConnection" /> that has been authenticated.</param>
-        <summary>Constructor.</summary>
-        <remarks>None.</remarks></Docs>
+      <Parameters><Parameter Name="conn" Type="Mono.Google.GoogleConnection" /></Parameters>
+      <Docs><param name="conn">A <see cref="T:Mono.Google.GoogleConnection" /> that has been authenticated.</param><summary>Constructor.</summary><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="CreateAlbum">
       <MemberSignature Language="C#" Value="public string CreateAlbum (string title);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="title" Type="System.String" /></Parameters>
-      <Docs>
-        <param name="title">The new album title.</param>
-        <summary>Creates a new album.</summary>
-        <returns>The unique ID of the album just created.</returns>
-        <remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="title" Type="System.String" /></Parameters>
+      <Docs><param name="title">The new album title.</param><summary>Creates a new album.</summary><returns>The unique ID of the album just created.</returns><remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
     </Member>
     <Member MemberName="CreateAlbum">
       <MemberSignature Language="C#" Value="public string CreateAlbum (string title, Mono.Google.Picasa.AlbumAccess access);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="title" Type="System.String" />
-        <Parameter Name="access" Type="Mono.Google.Picasa.AlbumAccess" /></Parameters>
-      <Docs>
-        <param name="title">The new album title.</param>
-        <param name="access">The access rights to the album.</param>
-        <summary>Creates a new album. </summary>
-        <returns>The unique ID of the album just created.</returns>
-        <remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="title" Type="System.String" /><Parameter Name="access" Type="Mono.Google.Picasa.AlbumAccess" /></Parameters>
+      <Docs><param name="title">The new album title.</param><param name="access">The access rights to the album.</param><summary>Creates a new album. </summary><returns>The unique ID of the album just created.</returns><remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
     </Member>
     <Member MemberName="CreateAlbum">
       <MemberSignature Language="C#" Value="public string CreateAlbum (string title, string description);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="title" Type="System.String" />
-        <Parameter Name="description" Type="System.String" /></Parameters>
-      <Docs>
-        <param name="title">The new album title.</param>
-        <param name="description">A description for the album.</param>
-        <summary>Creates a new album.</summary>
-        <returns>The unique ID of the album just created.</returns>
-        <remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="title" Type="System.String" /><Parameter Name="description" Type="System.String" /></Parameters>
+      <Docs><param name="title">The new album title.</param><param name="description">A description for the album.</param><summary>Creates a new album.</summary><returns>The unique ID of the album just created.</returns><remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
     </Member>
     <Member MemberName="CreateAlbum">
       <MemberSignature Language="C#" Value="public string CreateAlbum (string title, string description, Mono.Google.Picasa.AlbumAccess access);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="title" Type="System.String" />
-        <Parameter Name="description" Type="System.String" />
-        <Parameter Name="access" Type="Mono.Google.Picasa.AlbumAccess" /></Parameters>
-      <Docs>
-        <param name="title">The new album title.</param>
-        <param name="description">A description for the album.</param>
-        <param name="access">The access rights to the album.</param>
-        <summary>Creates a new album.</summary>
-        <returns>The unique ID of the album just created.</returns>
-        <remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="title" Type="System.String" /><Parameter Name="description" Type="System.String" /><Parameter Name="access" Type="Mono.Google.Picasa.AlbumAccess" /></Parameters>
+      <Docs><param name="title">The new album title.</param><param name="description">A description for the album.</param><param name="access">The access rights to the album.</param><summary>Creates a new album.</summary><returns>The unique ID of the album just created.</returns><remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
     </Member>
     <Member MemberName="CreateAlbum">
       <MemberSignature Language="C#" Value="public string CreateAlbum (string title, string description, Mono.Google.Picasa.AlbumAccess access, DateTime pubDate);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="title" Type="System.String" />
-        <Parameter Name="description" Type="System.String" />
-        <Parameter Name="access" Type="Mono.Google.Picasa.AlbumAccess" />
-        <Parameter Name="pubDate" Type="System.DateTime" /></Parameters>
-      <Docs>
-        <param name="title">The new album title.</param>
-        <param name="description">A description for the album.</param>
-        <param name="access">The access rights to the album.</param>
-        <param name="pubDate">Publication time. The current timezone is assumed.</param>
-        <summary>Creates a new album.</summary>
-        <returns>The unique ID of the album just created.</returns>
-        <remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="title" Type="System.String" /><Parameter Name="description" Type="System.String" /><Parameter Name="access" Type="Mono.Google.Picasa.AlbumAccess" /><Parameter Name="pubDate" Type="System.DateTime" /></Parameters>
+      <Docs><param name="title">The new album title.</param><param name="description">A description for the album.</param><param name="access">The access rights to the album.</param><param name="pubDate">Publication time. The current timezone is assumed.</param><summary>Creates a new album.</summary><returns>The unique ID of the album just created.</returns><remarks>If you attemp to create an album with a title that already exists, the new album will be created but it will have a different unique ID.</remarks></Docs>
     </Member>
     <Member MemberName="Title">
       <MemberSignature Language="C#" Value="public string Title { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Docs>
-        <summary>The title of the photo gallery.</summary>
-        <value>The title of the photo gallery.</value>
-        <remarks>None.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>The title of the photo gallery.</summary><value>The title of the photo gallery.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Link">
       <MemberSignature Language="C#" Value="public string Link { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Docs>
-        <summary>The URL for the Picasaweb home of the album owner.</summary>
-        <value>URL to the Picasaweb home of the album owner.</value>
-        <remarks>None.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>The URL for the Picasaweb home of the album owner.</summary><value>URL to the Picasaweb home of the album owner.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="User">
       <MemberSignature Language="C#" Value="public string User { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Docs>
-        <summary>The user that owns this gallery.</summary>
-        <value>The user that owns this gallery.</value>
-        <remarks>None.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>The user that owns this gallery.</summary><value>The user that owns this gallery.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="NickName">
       <MemberSignature Language="C#" Value="public string NickName { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType></ReturnValue>
-      <Docs>
-        <summary>Nickname of the album owner.</summary>
-        <value>The nickname of the album owner.</value>
-        <remarks>None.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>Nickname of the album owner.</summary><value>The nickname of the album owner.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="QuotaUsed">
       <MemberSignature Language="C#" Value="public long QuotaUsed { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int64</ReturnType></ReturnValue>
-      <Docs>
-        <summary>Number of bytes used by all of the user's albums.</summary>
-        <value>Number of bytes used by all of the user's albums.</value>
-        <remarks>Can be -1 if you didn't provide a password for the user.</remarks></Docs>
+      <ReturnValue><ReturnType>System.Int64</ReturnType></ReturnValue>
+      <Docs><summary>Number of bytes used by all of the user's albums.</summary><value>Number of bytes used by all of the user's albums.</value><remarks>Can be -1 if you didn't provide a password for the user.</remarks></Docs>
     </Member>
     <Member MemberName="QuotaLimit">
       <MemberSignature Language="C#" Value="public long QuotaLimit { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int64</ReturnType></ReturnValue>
-      <Docs>
-        <summary>The maximum number of bytes of web space that the user has.</summary>
-        <value>The maximum number of bytes of web space that the user has. </value>
-        <remarks>It can be -1 if you didn't provide a password for the user.</remarks></Docs>
+      <ReturnValue><ReturnType>System.Int64</ReturnType></ReturnValue>
+      <Docs><summary>The maximum number of bytes of web space that the user has.</summary><value>The maximum number of bytes of web space that the user has. </value><remarks>It can be -1 if you didn't provide a password for the user.</remarks></Docs>
     </Member>
     <Member MemberName="GetAlbums">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbumCollection GetAlbums ();" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaAlbumCollection</ReturnType></ReturnValue>
+      <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaAlbumCollection</ReturnType></ReturnValue>
       <Parameters />
-      <Docs>
-        <summary>Retrieves information of all the albums in this gallery.</summary>
-        <returns>A read-only <see cref="T:Mono.Google.Picasa.PicasaAlbumCollection" /></returns>
-        <remarks>None.</remarks></Docs>
+      <Docs><summary>Retrieves information of all the albums in this gallery.</summary><returns>A read-only <see cref="T:Mono.Google.Picasa.PicasaAlbumCollection" /></returns><remarks>None.</remarks></Docs>
     </Member>
   <Member MemberName="DeleteAlbum">
       <MemberSignature Language="C#" Value="public void DeleteAlbum (Mono.Google.Picasa.PicasaAlbum album);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="album" Type="Mono.Google.Picasa.PicasaAlbum" /></Parameters>
-      <Docs>
-        <param name="album">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks></Docs></Member><Member MemberName="DeleteAlbum">
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="album" Type="Mono.Google.Picasa.PicasaAlbum" /></Parameters>
+      <Docs><param name="album">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs></Member><Member MemberName="DeleteAlbum">
       <MemberSignature Language="C#" Value="public void DeleteAlbum (string unique_id);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="unique_id" Type="System.String" /></Parameters>
-      <Docs>
-        <param name="unique_id">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks></Docs></Member></Members>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="unique_id" Type="System.String" /></Parameters>
+      <Docs><param name="unique_id">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs></Member></Members>
   <Docs>
     <summary>This is the main class for managing a Picasaweb gallery.</summary>
     <remarks>Sample use:

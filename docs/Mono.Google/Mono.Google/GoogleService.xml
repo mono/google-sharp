@@ -16,10 +16,8 @@
     <Member MemberName="Picasa">
       <MemberSignature Language="C#" Value="Picasa" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.GoogleService</ReturnType></ReturnValue>
-      <Docs>
-        <summary>Used for the http://picasaweb.google.com service.</summary></Docs>
+      <ReturnValue><ReturnType>Mono.Google.GoogleService</ReturnType></ReturnValue>
+      <Docs><summary>Used for the http://picasaweb.google.com service.</summary></Docs>
     </Member>
   </Members>
   <Docs>

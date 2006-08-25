@@ -17,61 +17,35 @@
     <Member MemberName="AllKeys">
       <MemberSignature Language="C#" Value="public string[] AllKeys { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String[]</ReturnType></ReturnValue>
-      <Docs>
-        <summary>Returns all the keys for the albums in the collection.</summary>
-        <value>An array of strings holding the unique IDs for all the albums in the collection.</value>
-        <remarks>None.</remarks></Docs>
+      <ReturnValue><ReturnType>System.String[]</ReturnType></ReturnValue>
+      <Docs><summary>Returns all the keys for the albums in the collection.</summary><value>An array of strings holding the unique IDs for all the albums in the collection.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Item">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum Item[int index] { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="index" Type="System.Int32" /></Parameters>
-      <Docs>
-        <param name="index">The index of the item you want to retrieve.</param>
-        <summary>Indexer using an int.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks></Docs>
+      <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="index" Type="System.Int32" /></Parameters>
+      <Docs><param name="index">The index of the item you want to retrieve.</param><summary>Indexer using an int.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Item">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum Item[string uniqueID] { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="uniqueID" Type="System.String" /></Parameters>
-      <Docs>
-        <param name="uniqueID">The unique ID of the album.</param>
-        <summary>Indexer using a unique ID.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks></Docs>
+      <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="uniqueID" Type="System.String" /></Parameters>
+      <Docs><param name="uniqueID">The unique ID of the album.</param><summary>Indexer using a unique ID.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="GetByTitle">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum GetByTitle (string title);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
-      <Parameters>
-        <Parameter Name="title" Type="System.String" /></Parameters>
-      <Docs>
-        <param name="title">The title of the album you're looking for.</param>
-        <summary>Gets an album using its title as index.</summary>
-        <returns>The album whose title matches or null of none found.</returns>
-        <remarks>None.</remarks></Docs>
+      <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="title" Type="System.String" /></Parameters>
+      <Docs><param name="title">The title of the album you're looking for.</param><summary>Gets an album using its title as index.</summary><returns>The album whose title matches or null of none found.</returns><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="AllValues">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum[] AllValues { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaAlbum[]</ReturnType></ReturnValue>
-      <Docs>
-        <summary>Returns all the albums in the collection.</summary>
-        <value>An array holding all the albums in the collection.</value>
-        <remarks>To be added.</remarks></Docs>
+      <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaAlbum[]</ReturnType></ReturnValue>
+      <Docs><summary>Returns all the albums in the collection.</summary><value>An array holding all the albums in the collection.</value><remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>

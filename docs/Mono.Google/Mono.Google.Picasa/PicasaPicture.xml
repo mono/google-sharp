@@ -12,152 +12,76 @@
     <Member MemberName="DownloadToStream">
       <MemberSignature Language="C#" Value="public void DownloadToStream (System.IO.Stream stream);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="stream" Type="System.IO.Stream" />
-      </Parameters>
-      <Docs>
-        <param name="stream">A writeable stream.</param>
-        <summary>Downloads a full-sized picture and writes it to the provided stream.</summary>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="stream" Type="System.IO.Stream" /></Parameters>
+      <Docs><param name="stream">A writeable stream.</param><summary>Downloads a full-sized picture and writes it to the provided stream.</summary><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="DownloadThumbnailToStream">
       <MemberSignature Language="C#" Value="public void DownloadThumbnailToStream (System.IO.Stream stream);" />
       <MemberType>Method</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Void</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="stream" Type="System.IO.Stream" />
-      </Parameters>
-      <Docs>
-        <param name="stream">A writeable stream.</param>
-        <summary>Downloads a thumbnail of the picture and writes it to the provided stream.</summary>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Void</ReturnType></ReturnValue>
+      <Parameters><Parameter Name="stream" Type="System.IO.Stream" /></Parameters>
+      <Docs><param name="stream">A writeable stream.</param><summary>Downloads a thumbnail of the picture and writes it to the provided stream.</summary><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Album">
       <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum Album { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>Gets the album this picture belongs to.</summary>
-        <value>The album this picture belongs to.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
+      <Docs><summary>Gets the album this picture belongs to.</summary><value>The album this picture belongs to.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Title">
       <MemberSignature Language="C#" Value="public string Title { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>The title of the image.</summary>
-        <value>The title of the image. Usually, the file name.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>The title of the image.</summary><value>The title of the image. Usually, the file name.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Description">
       <MemberSignature Language="C#" Value="public string Description { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>The description for the picture.</summary>
-        <value>The description for the picture.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>The description for the picture.</summary><value>The description for the picture.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Date">
       <MemberSignature Language="C#" Value="public DateTime Date { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.DateTime</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>Publishing date for this picture.</summary>
-        <value>The publishing date.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.DateTime</ReturnType></ReturnValue>
+      <Docs><summary>Publishing date for this picture.</summary><value>The publishing date.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="ThumbnailURL">
       <MemberSignature Language="C#" Value="public string ThumbnailURL { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>The URL of a thumbnail of the image.</summary>
-        <value>The URL of a thumbnail of the image.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>The URL of a thumbnail of the image.</summary><value>The URL of a thumbnail of the image.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="ImageURL">
       <MemberSignature Language="C#" Value="public string ImageURL { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>The URL of the image.</summary>
-        <value>The URL of the image.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>The URL of the image.</summary><value>The URL of the image.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Width">
       <MemberSignature Language="C#" Value="public int Width { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int32</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>The width of the image in pixels.</summary>
-        <value>The description for the picture.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>The width of the image in pixels.</summary><value>The description for the picture.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Height">
       <MemberSignature Language="C#" Value="public int Height { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int32</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>The height of the image in pixels.</summary>
-        <value>The height of the image in pixels.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>The height of the image in pixels.</summary><value>The height of the image in pixels.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Index">
       <MemberSignature Language="C#" Value="public int Index { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.Int32</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>The index of this image in the album.</summary>
-        <value>The index of this image in the album.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.Int32</ReturnType></ReturnValue>
+      <Docs><summary>The index of this image in the album.</summary><value>The index of this image in the album.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="UniqueID">
       <MemberSignature Language="C#" Value="public string UniqueID { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>A unique identifier for this image.</summary>
-        <value>A unique identifier for this image.</value>
-        <remarks>None.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>A unique identifier for this image.</summary><value>A unique identifier for this image.</value><remarks>None.</remarks></Docs>
     </Member>
   </Members>
   <Docs>
