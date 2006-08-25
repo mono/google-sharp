@@ -1,0 +1,23 @@
+<Type Name="UploadProgressEventHandler" FullName="Mono.Google.Picasa.UploadProgressEventHandler">
+  <TypeSignature Language="C#" Value="public delegate void UploadProgressEventHandler(object sender, Mono.Google.Picasa.UploadProgressEventArgs args);" />
+  <AssemblyInfo>
+    <AssemblyName>Mono.Google</AssemblyName>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="sender" Type="System.Object" />
+    <Parameter Name="args" Type="Mono.Google.Picasa.UploadProgressEventArgs" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="sender">To be added.</param>
+    <param name="args">To be added.</param>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>
