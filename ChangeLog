@@ -1,3 +1,12 @@
+2006-08-27 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google.Picasa/Makefile.am:
+	* src/Makefile.am:
+	* src/Mono.Google.Picasa/PicasaWeb.cs:
+	* src/Mono.Google.Picasa/XmlUtil.cs:
+	* src/Mono.Google.Picasa/PicasaAlbum.cs: use System.Xml to write the
+	POST requests. Support the 'description' argument.
+
 2006-08-25 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* sample/Makefile.am:

@@ -143,7 +143,7 @@ namespace Mono.Google.Picasa {
 			return coll;
 		}
 
-		static string op_upload = 
+		/*
 			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
 			"<rss version=\"2.0\" xmlns:gphoto=\"http://www.temp.com/\">\n" +
 			" <channel>\n" +
@@ -160,6 +160,23 @@ namespace Mono.Google.Picasa {
 			"  </item>\n" +
 			" </channel>\n" +
 			"</rss>";
+		*/
+
+		static string GetXmlForUpload (string user, string aid, string title, string multipart_name, string description)
+		{
+			XmlUtil xml = new XmlUtil ();
+			xml.WriteElementString ("user", user, PicasaNamespaces.GPhoto);
+			xml.WriteElementString ("id", aid, PicasaNamespaces.GPhoto);
+			xml.WriteElementString ("op", "createAndAppendPhotoToAlbum", PicasaNamespaces.GPhoto);
+			xml.WriteStartElement ("item");
+			xml.WriteElementString ("title", title);
+			xml.WriteElementString ("description", description);
+			xml.WriteElementString ("multipart", multipart_name, PicasaNamespaces.GPhoto);
+			//checksum?
+			xml.WriteElementString ("layout", "0.000000", PicasaNamespaces.GPhoto);
+			xml.WriteElementString ("client", "picasa", PicasaNamespaces.GPhoto); // Should not lie here.
+			return xml.GetDocumentString ();
+		}
 
 		static string disp_pic = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\n";
 
@@ -180,6 +197,9 @@ namespace Mono.Google.Picasa {
 				throw new ArgumentException ("Cannot read from stream", "input");
 
 			string url = API.GetPostURL ();
+			if (url == null)
+				throw new UnauthorizedAccessException ("You are not authorized to upload to this album.");
+
 			MultipartRequest request = new MultipartRequest (url);
 			request.Request.CookieContainer = conn.Cookies;
 			MemoryStream ms = null;
@@ -193,13 +213,12 @@ namespace Mono.Google.Picasa {
 			request.BeginPart ();
 			request.AddHeader ("Content-Disposition: form-data; name=\"xml\"\r\n");
 			request.AddHeader ("Content-Type: text/plain; charset=utf8\r\n", true);
-			string upload = String.Format (op_upload, Connection.User, UniqueID, title, title.GetHashCode ().ToString ());
-			if (description != null && description != String.Empty)
-				upload = upload.Replace ("   <description/>", String.Format ("   <description>{0}</description>", description));
+			string multipart_name = title.GetHashCode ().ToString ();
+			string upload = GetXmlForUpload (Connection.User, UniqueID, title, multipart_name, description);
 			request.WriteContent (upload);
 			request.EndPart (false);
 			request.BeginPart ();
-			request.AddHeader (String.Format (disp_pic, title.GetHashCode ().ToString (), title));
+			request.AddHeader (String.Format (disp_pic, multipart_name, title));
 			request.AddHeader ("Content-Type: application/octet-stream\r\n", true);
 
 			byte [] data = new byte [8192];

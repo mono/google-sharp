@@ -10,5 +10,6 @@ EXTRA_DIST=\
 		PicasaWeb.cs \
 		UploadPictureException.cs \
 		UploadProgressEventArgs.cs \
-		UploadProgressEventHandler.cs
+		UploadProgressEventHandler.cs \
+		XmlUtil.cs
 

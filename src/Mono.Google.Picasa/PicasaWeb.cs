@@ -150,38 +150,55 @@ namespace Mono.Google.Picasa {
 			return doc.SelectSingleNode ("/response/id").InnerText;
 		}
 
-		static string create_album_op =
-				"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
-				"<rss version=\"2.0\" xmlns:gphoto=\"http://www.temp.com/\">\n" +
-				" <channel>\n" +
-				"  <title>{0}</title>\n" +
-				"  <description/>\n" +
-				"  <pubDate>{1:d' 'MMM' 'yyyy' 'HH':'mm':'ss' 'zzz}</pubDate>\n" +
-				"  <gphoto:access>{2}</gphoto:access>\n" +
-				"  <gphoto:user>{3}</gphoto:user>\n" +
-				"  <gphoto:location/>\n" +
-				"  <gphoto:op>createAlbum</gphoto:op>\n" +
-				" </channel>\n" +
-				"</rss>";
+		/*
+			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
+			"<rss version=\"2.0\" xmlns:gphoto=\"http://www.temp.com/\">\n" +
+			" <channel>\n" +
+			"  <title>{0}</title>\n" +
+			"  <description/>\n" +
+			"  <pubDate>{1:d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz}</pubDate>\n" +
+			"  <gphoto:access>{2}</gphoto:access>\n" +
+			"  <gphoto:user>{3}</gphoto:user>\n" +
+			"  <gphoto:location/>\n" +
+			"  <gphoto:op>createAlbum</gphoto:op>\n" +
+			" </channel>\n" +
+			"</rss>";
+		*/
 
 		static string GetXmlForCreate (string title, string desc, DateTime date, AlbumAccess access, string username)
 		{
-			string acc = access.ToString ().ToLower (CultureInfo.InvariantCulture);
-			string result = String.Format (create_album_op, title, date, acc, username).Replace (":00", "00");
-			if (desc != null && (desc = desc.Trim ()) != "")
-				result = result.Replace ("  <description/>", String.Format ("  <description>{0}</description>", desc));
-			return result;
+			XmlUtil xml = new XmlUtil ();
+			xml.WriteElementString ("title", title);
+			xml.WriteElementString ("description", desc);
+			string pubdate = date.ToString ("d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz");
+			pubdate = pubdate.Substring (0, pubdate.Length - 3) + "00"; // Replaces ':00' with '00'
+			xml.WriteElementString ("pubDate", pubdate);
+			xml.WriteElementString ("access", access.ToString ().ToLower (CultureInfo.InvariantCulture), PicasaNamespaces.GPhoto);
+			xml.WriteElementString ("user", username, PicasaNamespaces.GPhoto);
+			xml.WriteElementString ("op", "createAlbum", PicasaNamespaces.GPhoto);
+			// location?
+			return xml.GetDocumentString ();
 		}
 
-		static string delete_album_op =
-				"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
-				"<rss version=\"2.0\" xmlns:gphoto=\"http://www.temp.com/\">\n" +
-				"  <channel>\n" +
-				"    <gphoto:user>{0}</gphoto:user>\n" +
-				"    <gphoto:id>{1}</gphoto:id>\n" +
-				"    <gphoto:op>deleteAlbum</gphoto:op>\n" +
-				"  </channel>\n" +
-				"</rss>";
+		/*
+			"<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n" +
+			"<rss version=\"2.0\" xmlns:gphoto=\"http://www.temp.com/\">\n" +
+			"  <channel>\n" +
+			"    <gphoto:user>{0}</gphoto:user>\n" +
+			"    <gphoto:id>{1}</gphoto:id>\n" +
+			"    <gphoto:op>deleteAlbum</gphoto:op>\n" +
+			"  </channel>\n" +
+			"</rss>";
+		*/
+
+		static string GetXmlForDelete (string user, string aid)
+		{
+			XmlUtil xml = new XmlUtil ();
+			xml.WriteElementString ("user", user, PicasaNamespaces.GPhoto);
+			xml.WriteElementString ("id", aid, PicasaNamespaces.GPhoto);
+			xml.WriteElementString ("op", "deleteAlbum", PicasaNamespaces.GPhoto);
+			return xml.GetDocumentString ();
+		}
 
 		public void DeleteAlbum (PicasaAlbum album)
 		{
@@ -197,7 +214,7 @@ namespace Mono.Google.Picasa {
 				throw new ArgumentNullException ("unique_id");
 
 			string url = api.GetPostURL ();
-			string op_string = String.Format (delete_album_op, conn.User, unique_id);
+			string op_string = GetXmlForDelete (conn.User, unique_id);
 			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
 			MultipartRequest request = new MultipartRequest (url);
 			request.Request.CookieContainer = conn.Cookies;
