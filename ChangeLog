@@ -1,3 +1,8 @@
+2006-08-28 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google.Picasa/PicasaAlbum.cs: they added a new 'bytesused'
+	to tell the size of the album.
+
 2006-08-27 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google.Picasa/Makefile.am:

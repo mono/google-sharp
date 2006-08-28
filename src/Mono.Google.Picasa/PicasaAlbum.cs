@@ -47,6 +47,7 @@ namespace Mono.Google.Picasa {
 		AlbumAccess access = AlbumAccess.Public;
 		int num_photos = -1;
 		int num_photos_remaining = -1;
+		long bytes_used = -1;
 
 		internal PicasaAlbum (PicasaWeb pw)
 		{
@@ -92,6 +93,9 @@ namespace Mono.Google.Picasa {
 			node = nodeitem.SelectSingleNode ("gphoto:numphotosremaining", nsmgr);
 			if (node != null)
 				album.num_photos_remaining = (int) UInt32.Parse (node.InnerText);
+			node = nodeitem.SelectSingleNode ("gphoto:bytesused", nsmgr);
+			if (node != null)
+				album.bytes_used = (long) UInt64.Parse (node.InnerText);
 			return album;
 		}
 
@@ -173,7 +177,7 @@ namespace Mono.Google.Picasa {
 			xml.WriteElementString ("description", description);
 			xml.WriteElementString ("multipart", multipart_name, PicasaNamespaces.GPhoto);
 			//checksum?
-			xml.WriteElementString ("layout", "0.000000", PicasaNamespaces.GPhoto);
+			xml.WriteElementString ("layout", "0.0", PicasaNamespaces.GPhoto);
 			xml.WriteElementString ("client", "picasa", PicasaNamespaces.GPhoto); // Should not lie here.
 			return xml.GetDocumentString ();
 		}
@@ -315,6 +319,10 @@ namespace Mono.Google.Picasa {
 
 		public string User {
 			get { return user; }
+		}
+
+		public long BytesUsed {
+			get { return bytes_used; }
 		}
 
 		internal PicasaV1 API {
