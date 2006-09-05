@@ -1,3 +1,8 @@
+2006-09-05 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google.Picasa/PicasaWeb.cs: use the invariant culture when
+	generating the creation date. Hopefully fixes b.g.o. #354295.
+
 2006-08-28 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google.Picasa/PicasaAlbum.cs: they added a new 'bytesused'
