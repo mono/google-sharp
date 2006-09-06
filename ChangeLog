@@ -1,3 +1,9 @@
+2006-09-06 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google.Picasa/PicasaWeb.cs: fix nullref when the user is not
+	authenticated and tries to create or delete an album. Should fix b.g.o.
+	#354621.
+
 2006-09-05 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google.Picasa/PicasaWeb.cs: use the invariant culture when
