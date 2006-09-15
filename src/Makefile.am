@@ -1,7 +1,7 @@
 SUBDIRS=Mono.Google Mono.Google.Picasa
 
 pkgconfigdir=$(libdir)/pkgconfig
-MCSFLAGS= -debug+ -debug:full -nologo
+MCSFLAGS= -debug+ -debug:full -nologo -r:System.Web.dll
 
 monogoogledir = $(prefix)/lib/Mono.Google
 pkgconfig_DATA = mono-google.pc

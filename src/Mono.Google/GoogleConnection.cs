@@ -31,12 +31,15 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Reflection;
 
 namespace Mono.Google {
 	public class GoogleConnection {
 		CookieContainer cookies;
 		string user;
 		GoogleService service;
+		string auth;
+		string appname;
 
 		public GoogleConnection (GoogleService service)
 		{
@@ -44,6 +47,27 @@ namespace Mono.Google {
 				throw new ArgumentException ("Unsupported service.", "service");
 
 			this.service = service;
+		}
+
+		public string ApplicationName {
+			get {
+				if (appname == null) {
+					Assembly assembly = Assembly.GetEntryAssembly ();
+					if (assembly == null)
+						throw new InvalidOperationException ("You need to set GoogleConnection.ApplicationName.");
+					AssemblyName aname = assembly.GetName ();
+					appname = String.Format ("{0}-{1}", aname.Name, aname.Version);
+				}
+
+				return appname;
+			}
+
+			set {
+				if (value == null || value == "")
+					throw new ArgumentException ("Cannot be null or empty", "value");
+
+				appname = value;
+			}
 		}
 
 		public void Authenticate (string user, string password)
@@ -55,7 +79,7 @@ namespace Mono.Google {
 				throw new InvalidOperationException (String.Format ("Already authenticated for {0}", this.user));
 
 			this.user = user;
-			this.cookies = Authentication.GetAuthCookies (user, password, service);
+			this.cookies = Authentication.GetAuthCookies (this, user, password, service, out auth);
 			if (this.cookies == null) {
 				this.user = null;
 				throw new Exception (String.Format ("Authentication failed for user {0}", user));
@@ -151,6 +175,10 @@ namespace Mono.Google {
 
 		internal CookieContainer Cookies {
 			get { return cookies; }
+		}
+
+		internal string AuthToken {
+			get { return auth; }
 		}
 	}
 }
