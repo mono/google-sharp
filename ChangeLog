@@ -1,5 +1,10 @@
 2006-09-15 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
+	* src/Mono.Google/GoogleConnection.cs: some changes to make it work on
+	the MS runtime. Copied from System.Net.
+
+2006-09-15 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
 	* src/Mono.Google.Picasa/PicasaV1.cs: send the authtoken in the query
 	string. This will give us the cookie for further access.
 
