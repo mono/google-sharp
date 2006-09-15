@@ -28,6 +28,7 @@
 //
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -106,6 +107,7 @@ namespace Mono.Google {
 				StreamReader sr = new StreamReader (stream, encoding);
 				received = sr.ReadToEnd ();
 			}
+			AddCookiesFromHeader (req.Address, response.Headers ["set-cookie"]);
 			response.Close ();
 			return received;
 		}
@@ -135,6 +137,7 @@ namespace Mono.Google {
 					bytes = ms.ToArray ();
 				}
 			}
+			AddCookiesFromHeader (req.Address, response.Headers ["set-cookie"]);
 			response.Close ();
 
 			return bytes;
@@ -162,7 +165,95 @@ namespace Mono.Google {
 					output.Write (bytes, 0, nread);
 				}
 			}
+			AddCookiesFromHeader (req.Address, response.Headers ["set-cookie"]);
 			response.Close ();
+		}
+
+		/* I don't know why, MS does not set any response.Cookies when it gets a Set-Cookie like:
+			lh=DQAAAGwAAAC7YY1_HuCJh7WCvBttpcN5SnC5X6IShPs_9OZB6rZSlLA15xCoyBu_0FHE
+			5x9TJ6jqOie9CPOhMprEoYYidr2bA3v5zPnA7lqY8RrOTIBADxHu5nU2KWYISAIPs-7sGA0Dcyatzx0s
+			82dG1nl9ntM3;Domain=picasaweb.google.com;Path=/
+		*/
+
+		void AddCookiesFromHeader (Uri uri, string header)
+		{
+			string name, val;
+			Cookie cookie = null;
+			CookieParser parser = new CookieParser (header);
+
+			while (parser.GetNextNameValue (out name, out val)) {
+				if ((name == null || name == "") && cookie == null)
+					continue;
+
+				if (cookie == null) {
+					cookie = new Cookie (name, val);
+					continue;
+				}
+
+				name = name.ToLower (CultureInfo.InvariantCulture);
+				switch (name) {
+				case "comment":
+					if (cookie.Comment == null)
+						cookie.Comment = val;
+					break;
+				case "commenturl":
+					if (cookie.CommentUri == null)
+						cookie.CommentUri = new Uri (val);
+					break;
+				case "discard":
+					cookie.Discard = true;
+					break;
+				case "domain":
+					if (cookie.Domain == "")
+						cookie.Domain = val;
+					break;
+				case "max-age": // RFC Style Set-Cookie2
+					if (cookie.Expires == DateTime.MinValue) {
+						try {
+						cookie.Expires = cookie.TimeStamp.AddSeconds (UInt32.Parse (val));
+						} catch {}
+					}
+					break;
+				case "expires": // Netscape Style Set-Cookie
+					if (cookie.Expires != DateTime.MinValue)
+						break;
+					try {
+						cookie.Expires = DateTime.ParseExact (val, "r", CultureInfo.InvariantCulture);
+					} catch {
+						try { 
+						cookie.Expires = DateTime.ParseExact (val,
+								"ddd, dd'-'MMM'-'yyyy HH':'mm':'ss 'GMT'",
+								CultureInfo.InvariantCulture);
+						} catch {
+							cookie.Expires = DateTime.Now.AddDays (1);
+						}
+					}
+					break;
+				case "path":
+					cookie.Path = val;
+					break;
+				case "port":
+					if (cookie.Port == null)
+						cookie.Port = val;
+					break;
+				case "secure":
+					cookie.Secure = true;
+					break;
+				case "version":
+					try {
+						cookie.Version = (int) UInt32.Parse (val);
+					} catch {}
+					break;
+				}
+			}
+
+			if (cookie.Domain == "")
+				cookie.Domain = uri.Host;
+
+			if (cookies == null)
+				cookies = new CookieContainer ();
+
+			cookies.Add (cookie);
 		}
 
 		public string User {
@@ -179,6 +270,87 @@ namespace Mono.Google {
 
 		internal string AuthToken {
 			get { return auth; }
+		}
+
+		class CookieParser {
+			string header;
+			int pos;
+			int length;
+
+			public CookieParser (string header) : this (header, 0)
+			{
+			}
+
+			public CookieParser (string header, int position)
+			{
+				this.header = header;
+				this.pos = position;
+				this.length = header.Length;
+			}
+
+			public bool GetNextNameValue (out string name, out string val)
+			{
+				name = null;
+				val = null;
+
+				if (pos >= length)
+					return false;
+
+				name = GetCookieName ();
+				if (pos < header.Length && header [pos] == '=') {
+					pos++;
+					val = GetCookieValue ();
+				}
+
+				if (pos < length && header [pos] == ';')
+					pos++;
+
+				return true;
+			}
+
+			string GetCookieName ()
+			{
+				int k = pos;
+				while (k < length && Char.IsWhiteSpace (header [k]))
+					k++;
+
+				int begin = k;
+				while (k < length && header [k] != ';' &&  header [k] != '=')
+					k++;
+
+				pos = k;
+				return header.Substring (begin, k - begin).Trim ();
+			}
+
+			string GetCookieValue ()
+			{
+				if (pos >= length)
+					return null;
+
+				int k = pos;
+				while (k < length && Char.IsWhiteSpace (header [k]))
+					k++;
+
+				int begin;
+				if (header [k] == '"'){
+					int j;
+					begin = ++k;
+
+					while (k < length && header [k] != '"')
+						k++;
+
+					for (j = k; j < length && header [j] != ';'; j++)
+						;
+					pos = j;
+				} else {
+					begin = k;
+					while (k < length && header [k] != ';')
+						k++;
+					pos = k;
+				}
+					
+				return header.Substring (begin, k - begin).Trim ();
+			}
 		}
 	}
 }
