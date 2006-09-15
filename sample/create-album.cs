@@ -33,15 +33,17 @@ using Mono.Google;
 using Mono.Google.Picasa;
 
 class Test {
-	// args [0] -> user name, args [1] -> password, args [2] -> album title
+	// args [0] -> user name, args [1] -> album title
 	static void Main (string [] args)
 	{
 		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
 		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
-		conn.Authenticate (args [0], args [1]);
+		Console.Write ("Password: ");
+		string pass = Console.ReadLine ();
+		conn.Authenticate (args [0], pass);
 		PicasaWeb picasa = new PicasaWeb (conn);
-		string unique_id = picasa.CreateAlbum (args [2]);
-		Console.WriteLine ("Album created. Title: {0} Unique ID: {1}", args [2], unique_id);
+		string unique_id = picasa.CreateAlbum (args [1]);
+		Console.WriteLine ("Album created. Title: {0} Unique ID: {1}", args [1], unique_id);
 	}
 }
 
