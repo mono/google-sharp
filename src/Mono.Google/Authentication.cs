@@ -67,7 +67,6 @@ namespace Mono.Google {
 			StringBuilder content = new StringBuilder ();
 			string appname = HttpUtility.UrlEncode (conn.ApplicationName);
 			content.AppendFormat ("Email={0}&Passwd={1}&source={2}&PersistentCookie=0&accountType=HOSTED%5FOR%5FGOOGLE", user, password, appname);
-			Console.WriteLine (content);
 			byte [] bytes = Encoding.UTF8.GetBytes (content.ToString ());
 
 			HttpWebRequest request = (HttpWebRequest) WebRequest.Create (picasa_login_url);
