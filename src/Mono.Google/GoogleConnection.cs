@@ -177,6 +177,9 @@ namespace Mono.Google {
 
 		void AddCookiesFromHeader (Uri uri, string header)
 		{
+			if (header == null || header == "")
+				return;
+
 			string name, val;
 			Cookie cookie = null;
 			CookieParser parser = new CookieParser (header);

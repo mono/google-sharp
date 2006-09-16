@@ -1,3 +1,7 @@
+2006-09-16 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google/GoogleConnection.cs: avoid nullref.
+
 2006-09-15 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google/GoogleConnection.cs: some changes to make it work on
