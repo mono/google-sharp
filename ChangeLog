@@ -1,3 +1,17 @@
+2006-10-05 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google/GoogleConnection.cs:
+	* src/Mono.Google/Authentication.cs:
+	* src/Mono.Google/CaptchaException.cs:
+	* src/Mono.Google/Makefile.am:
+	* src/Mono.Google/AuthErrorCode.cs:
+	* src/Makefile.am: handle the case when google sends a captcha
+	challenge. We will now throw a CaptchaException with the image url and
+	and token. We should show the user the image and request authentication
+	again using the token and the user input. If this is not possible,
+	the user should be told about CaptchaException.UnlockCaptchaURL if he
+	wants to disable captchas fos his IP/machine/user.
+
 2006-09-16 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google/GoogleConnection.cs: avoid nullref.

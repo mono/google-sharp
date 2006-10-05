@@ -14,6 +14,8 @@ monogoogle_references=
 
 monogoogle_sources  = \
 			Mono.Google/Authentication.cs \
+			Mono.Google/AuthErrorCode.cs \
+			Mono.Google/CaptchaException.cs \
 			Mono.Google/GoogleService.cs \
 			Mono.Google/GoogleConnection.cs \
 			Mono.Google/MultipartRequest.cs \
