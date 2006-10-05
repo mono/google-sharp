@@ -1,5 +1,10 @@
 2006-10-05 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
+	* src/Mono.Google/Authentication.cs: make the captcha_url relative to
+	the url given in the error response.
+
+2006-10-05 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
 	* src/Mono.Google/AuthErrorCode.cs: removed.
 	* src/Mono.Google/Authentication.cs:
 	* src/Mono.Google/Makefile.am:

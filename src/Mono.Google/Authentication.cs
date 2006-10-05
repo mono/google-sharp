@@ -164,7 +164,7 @@ namespace Mono.Google {
 							AccountDeleted,
 							AccountDisabled,
 							ServiceUnavailable
-						  but CaptchRequired is reported as 'cr'. Don't know about the others.
+						  but CaptchaRequired is reported as 'cr'. Don't know about the others.
 						*/
 						code = str.Substring (6);
 					} else if (str.StartsWith ("CaptchaToken=")) {
@@ -174,8 +174,15 @@ namespace Mono.Google {
 					}
 				}
 			}
-			if (code == "cr" && token != null && captcha_url != null)
+			if (code == "cr" && token != null && captcha_url != null) {
+				if (url != null) {
+					Uri uri = new Uri (url);
+					captcha_url = new Uri (uri, captcha_url).ToString ();
+				} else if (!captcha_url.StartsWith ("https://")) {
+					captcha_url = "https://www.google.com/accounts/" + captcha_url;
+				}
 				throw new CaptchaException (url, token, captcha_url);
+			}
 
 			throw new UnauthorizedAccessException (String.Format ("Access to '{0}' is denied ({1})", url, code));
 		}
