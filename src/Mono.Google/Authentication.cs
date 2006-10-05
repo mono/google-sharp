@@ -69,7 +69,7 @@ namespace Mono.Google {
 			string appname = HttpUtility.UrlEncode (conn.ApplicationName);
 			content.AppendFormat ("Email={0}&Passwd={1}&source={2}&PersistentCookie=0&accountType=HOSTED%5FOR%5FGOOGLE", user, password, appname);
 			if (token != null) {
-				content.AppendFormat ("&logintoken={0}&logincaptcha={2}", token, captcha);
+				content.AppendFormat ("&logintoken={0}&logincaptcha={1}", token, captcha);
 			}
 			byte [] bytes = Encoding.UTF8.GetBytes (content.ToString ());
 
@@ -154,9 +154,15 @@ namespace Mono.Google {
 					if (str.StartsWith ("Url=")) {
 						url = str.Substring (4);
 					} else if (str.StartsWith ("Error=")) {
-						try {
-							error = (AuthErrorCode) Enum.Parse (typeof (AuthErrorCode), str.Substring (6));
-						} catch {}
+						string code = str.Substring (6);
+						if (code == "cr") {
+							error = AuthErrorCode.CaptchaRequired;
+						} else {
+							try {
+								error = (AuthErrorCode) Enum.Parse (typeof (AuthErrorCode), code);
+							} catch {
+							}
+						}
 					} else if (str.StartsWith ("CaptchaToken=")) {
 						token = str.Substring (13);
 					} else if (str.StartsWith ("CaptchaUrl=")) {
