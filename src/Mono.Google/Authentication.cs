@@ -145,24 +145,28 @@ namespace Mono.Google {
 				return;
 
 			string url = null;
-			AuthErrorCode error = 0;
 			string token = null;
 			string captcha_url = null;
+			string code = null;
 			using (StreamReader reader = new StreamReader (response.GetResponseStream ())) {
 				string str;
 				while ((str = reader.ReadLine ()) != null) {
 					if (str.StartsWith ("Url=")) {
 						url = str.Substring (4);
 					} else if (str.StartsWith ("Error=")) {
-						string code = str.Substring (6);
-						if (code == "cr") {
-							error = AuthErrorCode.CaptchaRequired;
-						} else {
-							try {
-								error = (AuthErrorCode) Enum.Parse (typeof (AuthErrorCode), code);
-							} catch {
-							}
-						}
+						/* Supposedly, these are the values for Error
+							None,
+							BadAuthentication,
+							NotVerified,
+							TermsNotAgreed,
+							CaptchaRequired,
+							Unknown,
+							AccountDeleted,
+							AccountDisabled,
+							ServiceUnavailable
+						  but CaptchRequired is reported as 'cr'. Don't know about the others.
+						*/
+						code = str.Substring (6);
 					} else if (str.StartsWith ("CaptchaToken=")) {
 						token = str.Substring (13);
 					} else if (str.StartsWith ("CaptchaUrl=")) {
@@ -170,10 +174,10 @@ namespace Mono.Google {
 					}
 				}
 			}
-			if (error == AuthErrorCode.CaptchaRequired && token != null && captcha_url != null)
+			if (code == "cr" && token != null && captcha_url != null)
 				throw new CaptchaException (url, token, captcha_url);
 
-			throw new UnauthorizedAccessException (String.Format ("Access to '{0}' is denied ({1})", url, error));
+			throw new UnauthorizedAccessException (String.Format ("Access to '{0}' is denied ({1})", url, code));
 		}
 	}
 }

@@ -1,5 +1,12 @@
 2006-10-05 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
+	* src/Mono.Google/AuthErrorCode.cs: removed.
+	* src/Mono.Google/Authentication.cs:
+	* src/Mono.Google/Makefile.am:
+	* src/Makefile.am: CaptchaRequired is reported as 'cr'.
+
+2006-10-05 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
 	* src/Mono.Google/Authentication.cs: 'CaptchaRequired' is reported as
 	'cr'. Fix typo in format.
 
