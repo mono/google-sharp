@@ -12,28 +12,14 @@
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public DeleteAlbumException (string msg);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="msg" Type="System.String" />
-      </Parameters>
-      <Docs>
-        <param name="msg">The text message for the exception.</param>
-        <summary>Not much to say here...</summary>
-        <remarks>None.</remarks>
-      </Docs>
+      <Parameters><Parameter Name="msg" Type="System.String" /></Parameters>
+      <Docs><param name="msg">The text message for the exception.</param><summary>Not much to say here...</summary><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="protected DeleteAlbumException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" />
-      </Parameters>
-      <Docs>
-        <param name="info">To be added.</param>
-        <param name="context">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Parameters><Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" /><Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" /></Parameters>
+      <Docs><param name="info">To be added.</param><param name="context">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>

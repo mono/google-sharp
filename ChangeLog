@@ -1,3 +1,9 @@
+2006-11-15 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google.Picasa/PicasaAlbum.cs: allow using the new
+	authkey value for URLs.
+	* docs/*: updated.
+
 2006-10-05 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google/Authentication.cs: make the captcha_url relative to

@@ -24,6 +24,7 @@
       <Type Name="GoogleConnection" />
       <Type Name="GoogleService" />
       <Type Name="NoCheckCertificatePolicy" />
+      <Type Name="CaptchaException" />
     </Namespace>
     <Namespace Name="Mono.Google.Picasa">
       <Type Name="PicasaPicture" />
@@ -37,6 +38,8 @@
       <Type Name="DeleteAlbumException" />
       <Type Name="UploadProgressEventArgs" />
       <Type Name="UploadProgressEventHandler" />
+    </Namespace>
+    <Namespace Name="System">
     </Namespace>
   </Types>
   <Title>Mono.Google</Title>
