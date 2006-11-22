@@ -1,3 +1,9 @@
+2006-11-21 Gonzalo Paniagua Javier <gonzalo@ximian.com>
+
+	* src/Mono.Google.Picasa/PicasaWeb.cs: there have been some changes in
+	picasaweb.google.com and this change is "needed" now. Patch from 
+	Stephane Delcroix.
+
 2006-11-15 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google.Picasa/PicasaAlbum.cs: allow using the new
