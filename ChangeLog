@@ -1,5 +1,10 @@
 2007-03-16 Stephane Delcroix <stephane@delcroix.org>
 
+	* src/Mono.Google.Picasa/PicasaPicture.cs: Add parser and get'er for
+	reading Tags.
+
+2007-03-16 Stephane Delcroix <stephane@delcroix.org>
+
 	* src/Mono.Google.Picasa/PicasaAlbum.cs: Fixes the namespaces in
 	GetPictures ().
 

@@ -47,6 +47,7 @@ namespace Mono.Google.Picasa {
 		int height;
 		int index;
 		string id;
+		string tags;
 
 		internal PicasaPicture (GoogleConnection conn, PicasaAlbum album)
 		{
@@ -69,6 +70,8 @@ namespace Mono.Google.Picasa {
 			picture.index = (node != null) ? (int) UInt32.Parse (node.InnerText) : -1;
 			node = nodeitem.SelectSingleNode ("gphoto:id", nsmgr);
 			picture.id = (node != null) ? node.InnerText : "auto" + picture.title.GetHashCode ().ToString ();
+			picture.tags = nodeitem.SelectSingleNode ("media:group", nsmgr).SelectSingleNode ("media:keywords", nsmgr).InnerText;
+
 			return picture;
 		}
 
@@ -120,6 +123,10 @@ namespace Mono.Google.Picasa {
 
 		public string UniqueID {
 			get { return id; }
+		}
+
+		public string Tags {
+			get { return tags; }
 		}
 	}
 }
