@@ -1,3 +1,8 @@
+2007-03-16 Stephane Delcroix <stephane@delcroix.org>
+
+	* src/Mono.Google.Picasa/PicasaWeb.cs: required patch to deal with
+	latest picasaweb.google.com changes.
+
 2006-11-21 Gonzalo Paniagua Javier <gonzalo@ximian.com>
 
 	* src/Mono.Google.Picasa/PicasaWeb.cs: there have been some changes in
