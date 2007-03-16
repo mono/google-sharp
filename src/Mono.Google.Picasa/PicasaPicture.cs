@@ -32,6 +32,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Xml;
+using System.Globalization;
 
 namespace Mono.Google.Picasa {
 	public class PicasaPicture {
@@ -58,7 +59,8 @@ namespace Mono.Google.Picasa {
 			PicasaPicture picture = new PicasaPicture (conn, album);
 			picture.title = nodeitem.SelectSingleNode ("title").InnerText;
 			picture.description = nodeitem.SelectSingleNode ("description").InnerText;
-			picture.pub_date = DateTime.ParseExact (nodeitem.SelectSingleNode ("pubDate").InnerText, "d' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz", null);
+			CultureInfo info = CultureInfo.InvariantCulture;
+			picture.pub_date = DateTime.ParseExact (nodeitem.SelectSingleNode ("pubDate").InnerText, "ddd', 'd' 'MMM' 'yyyy' 'H':'mm':'ss' 'zzz", info);
 			picture.thumbnail_url = nodeitem.SelectSingleNode ("photo:thumbnail", nsmgr).InnerText;
 			picture.image_url = nodeitem.SelectSingleNode ("photo:imgsrc", nsmgr).InnerText;
 			picture.width = (int) UInt32.Parse (nodeitem.SelectSingleNode ("gphoto:width", nsmgr).InnerText);

@@ -1,5 +1,13 @@
 2007-03-16 Stephane Delcroix <stephane@delcroix.org>
 
+	* src/Mono.Google.Picasa/PicasaAlbum.cs: Fixes the namespaces in
+	GetPictures ().
+
+	* src/Mono.Google.Picasa/PicasaPicture.cs: Fixes the date parsing in
+	ParsePictureInfo ().
+
+2007-03-16 Stephane Delcroix <stephane@delcroix.org>
+
 	* src/Mono.Google.Picasa/PicasaWeb.cs: required patch to deal with
 	latest picasaweb.google.com changes.
 
