@@ -6,7 +6,7 @@ EXTRA_DIST=\
 		PicasaAlbumCollection.cs \
 		PicasaPicture.cs \
 		PicasaPictureCollection.cs \
-		PicasaV1.cs \
+		GDataApi.cs \
 		PicasaWeb.cs \
 		UploadPictureException.cs \
 		UploadProgressEventArgs.cs \

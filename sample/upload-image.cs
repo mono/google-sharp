@@ -1,5 +1,5 @@
 //
-// create-album.cs
+// list-albums.cs
 //
 // Authors:
 //	Gonzalo Paniagua Javier (gonzalo@ximian.com)
@@ -33,17 +33,22 @@ using Mono.Google;
 using Mono.Google.Picasa;
 
 class Test {
-	// args [0] -> user name, args [1] -> album title
 	static void Main (string [] args)
 	{
+		string user = args [0];
+		string albumid = args [1];
+		string filepath = args [2];
+		Console.Write ("Password: ");
+		string password = Console.ReadLine ();
+		if (password == null || password.Trim () == "")
+			password = null;
+
 		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
 		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
-		Console.Write ("Password: ");
-		string pass = Console.ReadLine ();
-		conn.Authenticate (args [0], pass);
-		PicasaWeb picasa = new PicasaWeb (conn);
-		PicasaAlbum album = picasa.CreateAlbum (args [1]);
-		Console.WriteLine ("Album created. Title: {0} Unique ID: {1}", album.Title, album.UniqueID);
+		conn.Authenticate (user, password);
+		PicasaAlbum album = new PicasaAlbum (conn, albumid);
+		Console.WriteLine ("  Album Title: {0} ID: {1}", album.Title, album.UniqueID);
+		album.UploadPicture (filepath);
 	}
 }
 

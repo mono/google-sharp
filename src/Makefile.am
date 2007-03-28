@@ -26,7 +26,7 @@ monogoogle_sources  = \
 			Mono.Google.Picasa/PicasaAlbumCollection.cs \
 			Mono.Google.Picasa/PicasaPicture.cs \
 			Mono.Google.Picasa/PicasaPictureCollection.cs \
-			Mono.Google.Picasa/PicasaV1.cs \
+			Mono.Google.Picasa/GDataApi.cs \
 			Mono.Google.Picasa/PicasaWeb.cs \
 			Mono.Google.Picasa/UploadPictureException.cs \
 			Mono.Google.Picasa/UploadProgressEventArgs.cs \

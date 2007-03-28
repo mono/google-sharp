@@ -1,3 +1,41 @@
+2007-03-28 Stephane Delcroix <stephane@delcroix.org>
+
+	* configure.ac: switch to gmcs.
+
+	* src/Mono.Google/GoogleService.cs: changing this enum to a class,
+	adding a ServiceCode method.
+
+	* src/Mono.Google/Authentication.cs:
+	* src/Mono.Google/GoogleConnection.cs: changes to authenticate against
+	ClientLogin as described at
+	http://code.google.com/apis/accounts/AuthForInstalledApps.html. No
+	longer send cookies but the Authentication header instead (if the user
+	is authenticated). Make it fails on Authenticate with null password.
+
+	* src/Mono.Google/MultipartRequest.cs: use multipart/related, get the
+	auth token from GoogleConnection.
+
+	* src/Mono.Google.Picasa/XmlUtil.cs: Some chages to fit the protocol
+	changes, some new helper methods.
+
+	* src/Makefile.am:
+	* src/Mono.Google.Picasa/Makefile.am:
+	* src/Mono.Google.Picasa/PicasaV1.cs:
+	* src/Mono.Google.Picasa/GDataApi.cs: removed PicasaV1 replaced by GDataApi.
+	GDataApi contain urls for accessing PicasaWeb using GData, as detailed
+	at http://code.google.com/apis/picasaweb/gdata.html.
+
+	* src/Mono.Google.PicasaWeb.cs: 
+	* src/Mono.Google.PicasaAlbum.cs: 
+	* src/Mono.Google.PicasaPicture.cs: Some changes in the API and the
+	code to reflect the way of how the protocol works (e.g. UploadPicture
+	return a PicasaPicture, the <entry> related to the top level gallery
+	is parsed at construct time for PicasaWeb, ...). The
+	PicasaWeb.DeleteAlbum code is disabled for now. 
+
+	* sample/*: adapation for some minor API changes, new upload-image.cs
+	sample.
+
 2007-03-16 Stephane Delcroix <stephane@delcroix.org>
 
 	* src/Mono.Google.Picasa/PicasaPicture.cs: Add parser and get'er for

@@ -8,7 +8,7 @@ AM_MAINTAINER_MODE
 AC_PROG_INSTALL
 
 AC_PATH_PROG(CSC, csc, no)
-AC_PATH_PROG(MCS, mcs, no)
+AC_PATH_PROG(MCS, gmcs, no)
 AC_PATH_PROG(RUNTIME, mono, no)
 CS="C#"
 if test "x$CSC" = "xno" -a "x$MCS" = "xno"  ; then

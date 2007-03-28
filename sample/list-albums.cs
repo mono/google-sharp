@@ -39,13 +39,17 @@ class Test {
 		string user = Console.ReadLine ();
 		Console.Write ("Password: ");
 		string password = Console.ReadLine ();
-		if (password == null || password.Trim () == "")
-			password = null;
 
 		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
 		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
-		conn.Authenticate (user, password);
-		PicasaWeb picasa = new PicasaWeb (conn);
+		PicasaWeb picasa;
+		if (password == null || password.Trim () == "")
+			picasa = new PicasaWeb (conn, user);
+		else {
+			conn.Authenticate (user, password);
+			picasa = new PicasaWeb (conn);
+		}
+		Console.WriteLine ("Picasa: Title: {0}, User: {1}, NickName: {2}, QuotaUsed: {3}, QuotaLimit: {4}\n", picasa.Title, picasa.User, picasa.NickName, picasa.QuotaUsed, picasa.QuotaLimit);
 		PicasaAlbumCollection coll = picasa.GetAlbums ();
 		foreach (PicasaAlbum album in coll.AllValues) {
 			Console.WriteLine ("Title: {0} ID: {1}", album.Title, album.UniqueID);
