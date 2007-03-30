@@ -1,3 +1,11 @@
+2007-03-30 Stephane Delcroix <stephane@delcroix.org>
+
+	* src/Mono.Google.PicasaPicture.cs:
+	* src/Mono.Google.GDataApi.cs: Adding support for picture tagging and
+	a new public constructor for pictures.
+
+	* sample/*: new tag-image.cs sample.
+
 2007-03-28 Stephane Delcroix <stephane@delcroix.org>
 
 	* configure.ac: switch to gmcs.

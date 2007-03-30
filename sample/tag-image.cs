@@ -1,5 +1,5 @@
 //
-// upload-image.cs
+// tag-image.cs
 //
 // Authors:
 //	Stephane Delcroix (stephane@delcroix.org)
@@ -37,7 +37,8 @@ class Test {
 	{
 		string user = args [0];
 		string albumid = args [1];
-		string filepath = args [2];
+		string imageid = args [2];
+		string tag = args [3];
 		Console.Write ("Password: ");
 		string password = Console.ReadLine ();
 		if (password == null || password.Trim () == "")
@@ -46,9 +47,9 @@ class Test {
 		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
 		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 		conn.Authenticate (user, password);
-		PicasaAlbum album = new PicasaAlbum (conn, albumid);
-		Console.WriteLine ("  Album Title: {0} ID: {1}", album.Title, album.UniqueID);
-		album.UploadPicture (filepath);
+		PicasaPicture picture = new PicasaPicture (conn, albumid, imageid);
+		Console.WriteLine ("  Image Name: {0} ID: {1}", picture.Title, picture.UniqueID);
+		picture.AddTag (tag);
 	}
 }
 
