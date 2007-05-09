@@ -1,7 +1,12 @@
+2007-05-09 Stephane Delcroix <stephane@delcroix.org>
+
+	* src/Mono.Google.Picasa/PicasaAlbum.cs: new UploadPicture (string,
+	string, string) interface.
+
 2007-03-30 Stephane Delcroix <stephane@delcroix.org>
 
-	* src/Mono.Google.PicasaPicture.cs:
-	* src/Mono.Google.GDataApi.cs: Adding support for picture tagging and
+	* src/Mono.Google.Picasa/PicasaPicture.cs:
+	* src/Mono.Google.Picasa/GDataApi.cs: Adding support for picture tagging and
 	a new public constructor for pictures.
 
 	* sample/*: new tag-image.cs sample.
