@@ -1,5 +1,5 @@
 <Type Name="UploadProgressEventArgs" FullName="Mono.Google.Picasa.UploadProgressEventArgs">
-  <TypeSignature Language="C#" Value="public sealed class UploadProgressEventArgs : System.EventArgs" />
+  <TypeSignature Language="C#" Value="public sealed class UploadProgressEventArgs : EventArgs" />
   <AssemblyInfo>
     <AssemblyName>Mono.Google</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>

@@ -1,5 +1,5 @@
 <Type Name="CreateAlbumException" FullName="Mono.Google.Picasa.CreateAlbumException">
-  <TypeSignature Language="C#" Value="public class CreateAlbumException : System.Exception" />
+  <TypeSignature Language="C#" Value="public class CreateAlbumException : Exception" />
   <AssemblyInfo>
     <AssemblyName>Mono.Google</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>

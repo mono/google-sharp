@@ -1,27 +1,18 @@
 <Type Name="GoogleService" FullName="Mono.Google.GoogleService">
-  <TypeSignature Language="C#" Value="public enum GoogleService" />
+  <TypeSignature Language="C#" Value="public class GoogleService" />
   <AssemblyInfo>
     <AssemblyName>Mono.Google</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
   </AssemblyInfo>
   <Base>
-    <BaseTypeName>System.Enum</BaseTypeName>
+    <BaseTypeName>System.Object</BaseTypeName>
   </Base>
-  <Attributes>
-    <Attribute>
-      <AttributeName>System.Flags</AttributeName>
-    </Attribute>
-  </Attributes>
   <Members>
-    <Member MemberName="Picasa">
-      <MemberSignature Language="C#" Value="Picasa" />
-      <MemberType>Field</MemberType>
-      <ReturnValue><ReturnType>Mono.Google.GoogleService</ReturnType></ReturnValue>
-      <Docs><summary>Used for the http://picasaweb.google.com service.</summary></Docs>
-    </Member>
-  </Members>
+    
+  <Member MemberName="Calendar"><MemberSignature Language="C#" Value="public static Mono.Google.GoogleService Calendar { get; };" /><MemberType>Property</MemberType><ReturnValue><ReturnType>Mono.Google.GoogleService</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member><Member MemberName="Picasa"><MemberSignature Language="C#" Value="public static Mono.Google.GoogleService Picasa { get; };" /><MemberType>Property</MemberType><ReturnValue><ReturnType>Mono.Google.GoogleService</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member><Member MemberName="ServiceCode"><MemberSignature Language="C#" Value="public string ServiceCode { get; };" /><MemberType>Property</MemberType><ReturnValue><ReturnType>System.String</ReturnType></ReturnValue><Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs></Member></Members>
   <Docs>
     <summary>This enumeration has the different Google services that can be used to log on using <see cref="T:Mono.Google.GoogleConnection" />.</summary>
     <remarks>You can combine the different values if you want to log on to more that one service.</remarks>
   </Docs>
+  <Interfaces />
 </Type>

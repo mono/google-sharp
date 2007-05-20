@@ -10,7 +10,7 @@
   <Interfaces />
   <Attributes>
     <Attribute>
-      <AttributeName>System.Reflection.DefaultMember(MemberName="Item")</AttributeName>
+      <AttributeName>System.Reflection.DefaultMember("Item")</AttributeName>
     </Attribute>
   </Attributes>
   <Members>
@@ -21,14 +21,14 @@
       <Docs><summary>Returns the keys (unique IDs) of all the pictures in the collection.</summary><value>Array containing the <see cref="M:Mono.Google.Picasa.PicasaPicture.UniqueID" /> values from all the pictures in the collection.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Item">
-      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture Item[int index] { get; };" />
+      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture this[int index] { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaPicture</ReturnType></ReturnValue>
       <Parameters><Parameter Name="index" Type="System.Int32" /></Parameters>
       <Docs><param name="index">The index of te picture we want to get.</param><summary>Gets the nth picture in the collection.</summary><value>A <see cref="T:Mono.Google.Picasa.PicasaPicture" />.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Item">
-      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture Item[string uniqueID] { get; };" />
+      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaPicture this[string uniqueID] { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaPicture</ReturnType></ReturnValue>
       <Parameters><Parameter Name="uniqueID" Type="System.String" /></Parameters>

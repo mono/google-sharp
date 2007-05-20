@@ -10,7 +10,7 @@
   <Interfaces />
   <Attributes>
     <Attribute>
-      <AttributeName>System.Reflection.DefaultMember(MemberName="Item")</AttributeName>
+      <AttributeName>System.Reflection.DefaultMember("Item")</AttributeName>
     </Attribute>
   </Attributes>
   <Members>
@@ -21,14 +21,14 @@
       <Docs><summary>Returns all the keys for the albums in the collection.</summary><value>An array of strings holding the unique IDs for all the albums in the collection.</value><remarks>None.</remarks></Docs>
     </Member>
     <Member MemberName="Item">
-      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum Item[int index] { get; };" />
+      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum this[int index] { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
       <Parameters><Parameter Name="index" Type="System.Int32" /></Parameters>
       <Docs><param name="index">The index of the item you want to retrieve.</param><summary>Indexer using an int.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Item">
-      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum Item[string uniqueID] { get; };" />
+      <MemberSignature Language="C#" Value="public Mono.Google.Picasa.PicasaAlbum this[string uniqueID] { get; };" />
       <MemberType>Property</MemberType>
       <ReturnValue><ReturnType>Mono.Google.Picasa.PicasaAlbum</ReturnType></ReturnValue>
       <Parameters><Parameter Name="uniqueID" Type="System.String" /></Parameters>

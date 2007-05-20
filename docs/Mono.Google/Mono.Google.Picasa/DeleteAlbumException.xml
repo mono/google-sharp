@@ -1,5 +1,5 @@
 <Type Name="DeleteAlbumException" FullName="Mono.Google.Picasa.DeleteAlbumException">
-  <TypeSignature Language="C#" Value="public class DeleteAlbumException : System.Exception" />
+  <TypeSignature Language="C#" Value="public class DeleteAlbumException : Exception" />
   <AssemblyInfo>
     <AssemblyName>Mono.Google</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>

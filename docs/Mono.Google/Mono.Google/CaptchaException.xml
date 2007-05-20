@@ -1,5 +1,5 @@
 <Type Name="CaptchaException" FullName="Mono.Google.CaptchaException">
-  <TypeSignature Language="C#" Value="public class CaptchaException : System.UnauthorizedAccessException" />
+  <TypeSignature Language="C#" Value="public class CaptchaException : UnauthorizedAccessException" />
   <AssemblyInfo>
     <AssemblyName>Mono.Google</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
@@ -13,87 +13,43 @@
       <MemberSignature Language="C#" Value="public CaptchaException ();" />
       <MemberType>Constructor</MemberType>
       <Parameters />
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="public CaptchaException (string url, string token, string captcha_url);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="url" Type="System.String" />
-        <Parameter Name="token" Type="System.String" />
-        <Parameter Name="captcha_url" Type="System.String" />
-      </Parameters>
-      <Docs>
-        <param name="url">To be added.</param>
-        <param name="token">To be added.</param>
-        <param name="captcha_url">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Parameters><Parameter Name="url" Type="System.String" /><Parameter Name="token" Type="System.String" /><Parameter Name="captcha_url" Type="System.String" /></Parameters>
+      <Docs><param name="url">To be added.</param><param name="token">To be added.</param><param name="captcha_url">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName=".ctor">
       <MemberSignature Language="C#" Value="protected CaptchaException (System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context);" />
       <MemberType>Constructor</MemberType>
-      <Parameters>
-        <Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" />
-        <Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" />
-      </Parameters>
-      <Docs>
-        <param name="info">To be added.</param>
-        <param name="context">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <Parameters><Parameter Name="info" Type="System.Runtime.Serialization.SerializationInfo" /><Parameter Name="context" Type="System.Runtime.Serialization.StreamingContext" /></Parameters>
+      <Docs><param name="info">To be added.</param><param name="context">To be added.</param><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="UnlockCaptchaURL">
       <MemberSignature Language="C#" Value="public static string UnlockCaptchaURL;" />
       <MemberType>Field</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Url">
       <MemberSignature Language="C#" Value="public string Url { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="Token">
       <MemberSignature Language="C#" Value="public string Token { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
     </Member>
     <Member MemberName="CaptchaUrl">
       <MemberSignature Language="C#" Value="public string CaptchaUrl { get; };" />
       <MemberType>Property</MemberType>
-      <ReturnValue>
-        <ReturnType>System.String</ReturnType>
-      </ReturnValue>
-      <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
-        <remarks>To be added.</remarks>
-      </Docs>
+      <ReturnValue><ReturnType>System.String</ReturnType></ReturnValue>
+      <Docs><summary>To be added.</summary><value>To be added.</value><remarks>To be added.</remarks></Docs>
     </Member>
   </Members>
   <Docs>

@@ -1,5 +1,5 @@
 <Type Name="UploadPictureException" FullName="Mono.Google.Picasa.UploadPictureException">
-  <TypeSignature Language="C#" Value="public class UploadPictureException : System.Exception" />
+  <TypeSignature Language="C#" Value="public class UploadPictureException : Exception" />
   <AssemblyInfo>
     <AssemblyName>Mono.Google</AssemblyName>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
