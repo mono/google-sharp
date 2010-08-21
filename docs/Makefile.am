@@ -22,7 +22,7 @@ Mono.Google: Mono.Google.tree
 Mono.Google.tree Mono.Google.zip: $(srcdir)/Mono.Google/*.xml $(srcdir)/Mono.Google/*/*.xml
 	mdassembler --ecma $(srcdir)/Mono.Google -o Mono.Google
 
-install-hook:
+install-data-hook:
 	cp Mono.Google.* `pkg-config monodoc --variable=sourcesdir`
 
 uninstall-hook:
