@@ -127,6 +127,7 @@ namespace Mono.Google.Picasa {
 			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
 			string url = GDataApi.GetPictureFeed (conn.User, album.UniqueID, UniqueID);
 			HttpWebRequest request = conn.AuthenticatedRequest (url);
+			request.AutomaticDecompression = DecompressionMethods.GZip;
 			request.ContentType = "application/atom+xml; charset=UTF-8";
 			request.Method = "POST";
 			Stream output_stream = request.GetRequestStream ();
@@ -139,6 +140,7 @@ namespace Mono.Google.Picasa {
 				StreamReader sr = new StreamReader (stream, Encoding.UTF8);
 				received = sr.ReadToEnd ();
 			}
+			GC.KeepAlive (received); // Avoid 'unused' warning
 			response.Close ();
 	
 		}

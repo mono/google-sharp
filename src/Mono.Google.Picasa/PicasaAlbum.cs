@@ -209,46 +209,51 @@ namespace Mono.Google.Picasa {
 				throw new UnauthorizedAccessException ("You are not authorized to upload to this album.");
 
 			MultipartRequest request = new MultipartRequest (conn, url);
-			MemoryStream ms = null;
-			if (UploadProgress != null) {
-				// We do 'manual' buffering
-				request.Request.AllowWriteStreamBuffering = false;
-				ms = new MemoryStream ();
-				request.OutputStream = ms;
-			}
+			FileStream fs = null;
+			try {
+				if (UploadProgress != null) {
+					// We do 'manual' buffering
+					request.Request.AllowWriteStreamBuffering = false;
+					fs = new FileStream (Path.GetTempFileName (), FileMode.OpenOrCreate, FileAccess.Read | FileAccess.Write,
+								FileShare.None);
+					request.OutputStream = fs;
+				}
 
-			request.BeginPart (true);
-			request.AddHeader ("Content-Type: application/atom+xml; \r\n", true);
-			string upload = GetXmlForUpload (title, description);
-			request.WriteContent (upload);
-			request.EndPart (false);
-			request.BeginPart ();
-			request.AddHeader ("Content-Type: " + mime_type + "\r\n", true);
+				request.BeginPart (true);
+				request.AddHeader ("Content-Type: application/atom+xml; \r\n", true);
+				string upload = GetXmlForUpload (title, description);
+				request.WriteContent (upload);
+				request.EndPart (false);
+				request.BeginPart ();
+				request.AddHeader ("Content-Type: " + mime_type + "\r\n", true);
 
-			byte [] data = new byte [8192];
-			int nread;
-			while ((nread = input.Read (data, 0, data.Length)) > 0) {
-				request.WritePartialContent (data, 0, nread);
-			}
-			request.EndPartialContent ();
-			request.EndPart (true); // It won't call Close() on the MemoryStream
+				byte [] data = new byte [8192];
+				int nread;
+				while ((nread = input.Read (data, 0, data.Length)) > 0) {
+					request.WritePartialContent (data, 0, nread);
+				}
+				request.EndPartialContent ();
+				request.EndPart (true); // It won't call Close() on the MemoryStream
 
-			if (UploadProgress != null) {
-				int req_length = (int) ms.Length;
-				request.Request.ContentLength = req_length;
-				DoUploadProgress (title, 0, req_length);
-				using (Stream req_stream = request.Request.GetRequestStream ()) {
-					byte [] buffer = ms.GetBuffer ();
-					int nwrite = 0;
-					int offset;
-					for (offset = 0; offset < req_length; offset += nwrite) {
-						nwrite = System.Math.Min (16384, req_length - offset);
-						req_stream.Write (buffer, offset, nwrite);
-						// The progress uses the actual request size, not file size.
-						DoUploadProgress (title, offset, req_length);
+				if (UploadProgress != null) {
+					int req_length = (int) fs.Length;
+					request.Request.ContentLength = req_length;
+					fs.Position = 0;
+					DoUploadProgress (title, 0, req_length);
+					using (Stream req_stream = request.Request.GetRequestStream ()) {
+						while ((nread = fs.Read (data, 0, data.Length)) > 0) {
+							req_stream.Write (data, 0, nread);
+							// The progress uses the actual request size, not file size.
+							DoUploadProgress (title, fs.Position, req_length);
+						}
+						DoUploadProgress (title, fs.Position, req_length);
 					}
-					DoUploadProgress (title, offset, req_length);
-
+				}
+			} finally {
+				if (fs != null) {
+					string name = fs.Name;
+					fs.Close ();
+					File.Delete (name);
 				}
 			}
 

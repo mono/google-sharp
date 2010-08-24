@@ -115,6 +115,7 @@ namespace Mono.Google {
 				throw new ArgumentNullException ("url");
 
 			HttpWebRequest req = (HttpWebRequest) WebRequest.Create (url);
+			req.AutomaticDecompression = DecompressionMethods.GZip;
 			if (auth != null)
 				req.Headers.Add ("Authorization: GoogleLogin auth=" + auth);
 			return req;
@@ -127,6 +128,7 @@ namespace Mono.Google {
 
 			string received = null;
 			HttpWebRequest req = AuthenticatedRequest (url);
+			req.AutomaticDecompression = DecompressionMethods.GZip;
 			HttpWebResponse response = (HttpWebResponse) req.GetResponse ();
 			Encoding encoding = Encoding.UTF8;
 			if (response.ContentEncoding != "") {
@@ -149,6 +151,7 @@ namespace Mono.Google {
 				throw new ArgumentNullException ("url");
 
 			HttpWebRequest req = AuthenticatedRequest (url);
+			req.AutomaticDecompression = DecompressionMethods.GZip;
 			HttpWebResponse response = (HttpWebResponse) req.GetResponse ();
 			byte [] bytes = null;
 			using (Stream stream = response.GetResponseStream ()) {
@@ -184,6 +187,7 @@ namespace Mono.Google {
 				throw new ArgumentException ("The stream is not writeable", "output");
 
 			HttpWebRequest req = AuthenticatedRequest (url);
+			req.AutomaticDecompression = DecompressionMethods.GZip;
 			HttpWebResponse response = (HttpWebResponse) req.GetResponse ();
 			byte [] bytes = null;
 			using (Stream stream = response.GetResponseStream ()) {

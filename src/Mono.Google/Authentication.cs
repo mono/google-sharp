@@ -67,6 +67,7 @@ namespace Mono.Google {
 			byte [] bytes = Encoding.UTF8.GetBytes (content.ToString ());
 
 			HttpWebRequest request = (HttpWebRequest) WebRequest.Create (client_login_url);
+			request.AutomaticDecompression = DecompressionMethods.GZip;
 			request.Method = "POST";
 			request.ContentType = "application/x-www-form-urlencoded";
 			request.ContentLength = bytes.Length;

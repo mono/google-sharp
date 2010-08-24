@@ -134,6 +134,7 @@ namespace Mono.Google.Picasa {
 			string op_string = GetXmlForCreate (title, description, pubDate, access);
 			byte [] op_bytes = Encoding.UTF8.GetBytes (op_string);
 			HttpWebRequest request = conn.AuthenticatedRequest (url);
+			request.AutomaticDecompression = DecompressionMethods.GZip;
 			request.ContentType = "application/atom+xml; charset=UTF-8";
 			request.Method = "POST";
 			Stream output_stream = request.GetRequestStream ();
