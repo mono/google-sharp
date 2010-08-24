@@ -40,7 +40,7 @@ class Test {
 		Console.Write ("Password: ");
 		string password = Console.ReadLine ();
 
-		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
+		ServicePointManager.ServerCertificateValidationCallback +=  delegate { return true; };
 		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 		PicasaWeb picasa;
 		if (password == null || password.Trim () == "")

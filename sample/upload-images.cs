@@ -28,6 +28,7 @@
 //
 
 using System;
+using System.IO;
 using System.Net;
 using Mono.Google;
 using Mono.Google.Picasa;
@@ -43,12 +44,19 @@ class Test {
 		if (password == null || password.Trim () == "")
 			password = null;
 
-		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
+		ServicePointManager.ServerCertificateValidationCallback +=  delegate { return true; };
 		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 		conn.Authenticate (user, password);
 		PicasaAlbum album = new PicasaAlbum (conn, albumid);
 		Console.WriteLine ("  Album Title: {0} ID: {1}", album.Title, album.UniqueID);
-		album.UploadPicture (filepath);
+		string [] files = Directory.GetFiles (filepath, "*.jpg");
+		int count = files.Length;
+		int i = 0;
+		foreach (string f in files) {
+			i++;
+			Console.WriteLine ("Uploading {0} ({1} of {2})", Path.GetFileName (f), i, count);
+			album.UploadPicture (f);
+		}
 	}
 }
 

@@ -44,7 +44,7 @@ class Test {
 		if (password == null || password.Trim () == "")
 			password = null;
 
-		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
+		ServicePointManager.ServerCertificateValidationCallback +=  delegate { return true; };
 		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 		conn.Authenticate (user, password);
 		PicasaPicture picture = new PicasaPicture (conn, albumid, imageid);

@@ -36,7 +36,7 @@ class Test {
 	// args [0] -> user name, args [1] -> album title
 	static void Main (string [] args)
 	{
-		ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy ();
+		ServicePointManager.ServerCertificateValidationCallback +=  delegate { return true; };
 		GoogleConnection conn = new GoogleConnection (GoogleService.Picasa);
 		Console.Write ("Password: ");
 		string pass = Console.ReadLine ();

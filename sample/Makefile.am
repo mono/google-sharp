@@ -1,4 +1,4 @@
-SAMPLES=list-albums.cs create-album.cs upload-image.cs tag-image.cs
+SAMPLES=list-albums.cs create-album.cs upload-images.cs tag-image.cs
 MCSFLAGS= -debug+ -debug:full -nologo -r:Mono.Google.dll
 
 EXTRA_DIST=$(SAMPLES)
